@@ -1,12 +1,11 @@
-
 package br.com.kobos.modelo;
 
-public class Cliente extends Pessoa{
-    
+public class Cliente extends Pessoa {
+
     private int id_pessoa;
 
     public Cliente() {
-    }        
+    }
 
     public int getId_pessoa() {
         return id_pessoa;
@@ -20,5 +19,4 @@ public class Cliente extends Pessoa{
     public String toString() {
         return "Cliente{" + "id_pessoa=" + id_pessoa + '}';
     }
-    
 }

@@ -1,8 +1,7 @@
-
 package br.com.kobos.modelo;
 
 public class Funcionario {
-    
+
     private int id_funcionario;
     private String cpf;
     private String salario;
@@ -13,8 +12,8 @@ public class Funcionario {
     private String senha;
 
     public Funcionario() {
-    }   
-    
+    }
+
     public int getId_funcionario() {
         return id_funcionario;
     }
@@ -83,6 +82,4 @@ public class Funcionario {
     public String toString() {
         return "Funcionario{" + "id_funcionario=" + id_funcionario + ", cpf=" + cpf + ", salario=" + salario + ", funcao=" + funcao + ", ctps=" + ctps + ", nivelAcesso=" + nivelAcesso + ", usuario=" + usuario + ", senha=" + senha + '}';
     }
-    
-    
 }

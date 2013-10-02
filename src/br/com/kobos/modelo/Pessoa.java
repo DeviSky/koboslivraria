@@ -1,14 +1,13 @@
-
 package br.com.kobos.modelo;
 
 abstract public class Pessoa {
-    
+
     private String nome;
     private String sobrenome;
     private String telefone;
     private String bairro;
     private String rg;
-    private String cidade;    
+    private String cidade;
     private String rua;
     private int casa;
 
@@ -83,6 +82,4 @@ abstract public class Pessoa {
     public String toString() {
         return "Pessoa{" + "nome=" + nome + ", sobrenome=" + sobrenome + ", telefone=" + telefone + ", bairro=" + bairro + ", rg=" + rg + ", cidade=" + cidade + ", rua=" + rua + ", casa=" + casa + '}';
     }
-    
-    
 }

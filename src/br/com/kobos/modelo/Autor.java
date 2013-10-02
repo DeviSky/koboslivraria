@@ -1,8 +1,7 @@
-
 package br.com.kobos.modelo;
 
 public class Autor {
-    
+
     private int id_autor;
     private String nome;
     private String sobrenome;
@@ -41,11 +40,10 @@ public class Autor {
 
     public void setEmail(String email) {
         this.email = email;
-    }        
+    }
 
     @Override
     public String toString() {
         return "Autor{" + "id_autor=" + id_autor + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + '}';
     }
-        
 }

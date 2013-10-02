@@ -1,8 +1,7 @@
-
 package br.com.kobos.modelo;
 
 public class Loja {
-    
+
     private int id_loja;
     private String nome;
     private String endereco;
@@ -47,6 +46,4 @@ public class Loja {
     public String toString() {
         return "Loja{" + "id_loja=" + id_loja + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + '}';
     }
-    
-    
 }

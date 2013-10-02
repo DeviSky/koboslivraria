@@ -1,8 +1,7 @@
-
 package br.com.kobos.modelo;
 
 public class Editor {
-    
+
     private int id_editor;
     private String nome;
     private String email;
@@ -12,7 +11,7 @@ public class Editor {
     private String tel;
 
     public Editor() {
-    }        
+    }
 
     public int getId_editor() {
         return id_editor;
@@ -74,7 +73,4 @@ public class Editor {
     public String toString() {
         return "Editor{" + "id_editor=" + id_editor + ", nome=" + nome + ", email=" + email + ", url=" + url + ", endereco=" + endereco + ", cidade=" + cidade + ", tel=" + tel + '}';
     }
-    
-    
-    
 }

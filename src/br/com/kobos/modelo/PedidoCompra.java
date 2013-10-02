@@ -9,5 +9,4 @@ package br.com.kobos.modelo;
  * @author guest01
  */
 public class PedidoCompra {
-    
 }

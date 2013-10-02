@@ -1,8 +1,7 @@
-
 package br.com.kobos.modelo;
 
 public class Livro {
-    
+
     private int isbn;
     private String titulo;
     private String subtitulo;
@@ -95,11 +94,10 @@ public class Livro {
 
     public void setEdicao(String edicao) {
         this.edicao = edicao;
-    }        
+    }
 
     @Override
     public String toString() {
         return "Livro{" + "isbn=" + isbn + ", titulo=" + titulo + ", subtitulo=" + subtitulo + ", tema=" + tema + ", resumo=" + resumo + ", palavrasChave=" + palavrasChave + ", volume=" + volume + ", qtEstoque=" + qtEstoque + ", preco=" + preco + ", edicao=" + edicao + '}';
     }
-    
 }

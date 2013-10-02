@@ -1,10 +1,9 @@
-
 package br.com.kobos.modelo;
 
 import java.sql.Date;
 
 public class Manutencao {
-    
+
     private int id_manutencao;
     private String tipo;
     private Date data;
@@ -49,7 +48,4 @@ public class Manutencao {
     public String toString() {
         return "Manutencao{" + "id_manutencao=" + id_manutencao + ", tipo=" + tipo + ", data=" + data + ", motivo=" + motivo + '}';
     }
-    
-    
-    
 }

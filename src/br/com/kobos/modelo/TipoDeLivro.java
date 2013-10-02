@@ -1,8 +1,7 @@
-
 package br.com.kobos.modelo;
 
 public class TipoDeLivro {
-    
+
     private int id_tipo;
     private String descricao;
 
@@ -29,6 +28,4 @@ public class TipoDeLivro {
     public String toString() {
         return "TipoDeLivro{" + "id_tipo=" + id_tipo + ", descricao=" + descricao + '}';
     }
-    
-    
 }
