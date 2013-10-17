@@ -1,4 +1,4 @@
-package br.com.kobos.modelo;
+    package br.com.kobos.modelo;
 
 public class Cliente extends Pessoa {
 
