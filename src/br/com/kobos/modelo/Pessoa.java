@@ -7,8 +7,7 @@ abstract public class Pessoa {
     private String bairro;
     private String rg;
     private String cidade;
-    private String rua;
-    private int casa;
+    private String endereco;
 
     public Pessoa() {
     }
@@ -53,24 +52,16 @@ abstract public class Pessoa {
         this.cidade = cidade;
     }
 
-    public String getRua() {
-        return rua;
+    public String getEndereco() {
+        return endereco;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public int getCasa() {
-        return casa;
-    }
-
-    public void setCasa(int casa) {
-        this.casa = casa;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", telefone=" + telefone + ", bairro=" + bairro + ", rg=" + rg + ", cidade=" + cidade + ", rua=" + rua + ", casa=" + casa + '}';
+        return "Pessoa{" + "nome=" + nome + ", telefone=" + telefone + ", bairro=" + bairro + ", rg=" + rg + ", cidade=" + cidade + ", endereco=" + endereco + '}';
     }
 }

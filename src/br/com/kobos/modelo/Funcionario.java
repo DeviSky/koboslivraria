@@ -7,9 +7,6 @@ public class Funcionario {
     private String salario;
     private String funcao;
     private String ctps;
-    private String nivelAcesso;
-    private String usuario;
-    private String senha;
 
     public Funcionario() {
     }
@@ -54,32 +51,9 @@ public class Funcionario {
         this.ctps = ctps;
     }
 
-    public String getNivelAcesso() {
-        return nivelAcesso;
-    }
-
-    public void setNivelAcesso(String nivelAcesso) {
-        this.nivelAcesso = nivelAcesso;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 
     @Override
     public String toString() {
-        return "Funcionario{" + "id_funcionario=" + id_funcionario + ", cpf=" + cpf + ", salario=" + salario + ", funcao=" + funcao + ", ctps=" + ctps + ", nivelAcesso=" + nivelAcesso + ", usuario=" + usuario + ", senha=" + senha + '}';
+        return "Funcionario{" + "id_funcionario=" + id_funcionario + ", cpf=" + cpf + ", salario=" + salario + ", funcao=" + funcao + ", ctps=" + ctps + '}';
     }
 }
