@@ -1,11 +1,11 @@
 package br.com.kobos.modelo;
 
-public class TipoDeLivro {
+public class Categoria {
 
     private int id_tipo;
     private String descricao;
 
-    public TipoDeLivro() {
+    public Categoria() {
     }
 
     public int getId_tipo() {
