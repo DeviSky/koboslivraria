@@ -23,7 +23,11 @@ public class UsuarioDAOImplements implements UsuarioDAO{
     
     @Override
     public int salvar(Usuario us) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (us.getId_usuario() == 0){
+            return inserir(us);            
+        }else{
+            return update(us);
+        }
     }
     
     public int inserir (Usuario us){
@@ -93,7 +97,8 @@ public class UsuarioDAOImplements implements UsuarioDAO{
                 u.setNome_us(rs.getString("nome_us"));
                 u.setUsuario_us(rs.getString("usuario_us"));
                 u.setSenha_us(rs.getString("senha_us"));
-                u.setNivelAcesso_us(rs.getString("nivelAcesso_us"));                
+                u.setNivelAcesso_us(rs.getString("nivelAcesso_us"));
+                usuarios.add(u);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar usuários " + e);            
@@ -109,12 +114,87 @@ public class UsuarioDAOImplements implements UsuarioDAO{
 
     @Override
     public Usuario ListById(int id_usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Usuario u = new Usuario();
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(LISTBYID);
+            rs = pstm.executeQuery();
+            while (rs.next()){
+                u.setId_usuario(rs.getInt("id_usuario"));
+                u.setNome_us(rs.getString("nome_us"));
+                u.setUsuario_us(rs.getString("usuario_us"));
+                u.setSenha_us(rs.getString("senha_us"));
+                u.setNivelAcesso_us(rs.getString("nivelAcesso_us"));
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Erro ao listar por código " + e);
+        }finally{
+            try{
+                ConnectionFactory.closeConnection(conn, pstm, rs);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Erro ao desconctar com o banco " + e);
+            }
+        }
+        return u;
     }
 
     @Override
     public List<Usuario> ListByNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<Usuario> usuarios = new ArrayList<>();
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(LISTBYNOME);
+            rs = pstm.executeQuery();
+            while (rs.next()){
+                Usuario u = new Usuario();
+                u.setId_usuario(rs.getInt("id_usuario"));
+                u.setNome_us(rs.getString("nome_us"));
+                u.setUsuario_us(rs.getString("usuario_us"));
+                u.setSenha_us(rs.getString("senha_us"));
+                u.setNivelAcesso_us(rs.getString("nivelAcesso_us"));
+                usuarios.add(u);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null,"Erro ao listar usuários por nome " + e);
+        }finally{
+            try{
+                ConnectionFactory.closeConnection(conn, pstm, rs);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Erro ao desconectar com o banco " + e);
+            }
+        }
+        return usuarios;
+    }
+    
+    public int update(Usuario u){
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        int retorno = -1;
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(UPDATE);
+            pstm.setString(1, u.getNome_us());
+            pstm.setString(2, u.getUsuario_us());
+            pstm.setString(3, u.getSenha_us());
+            pstm.setString(4, u.getNivelAcesso_us());
+            pstm.execute();
+            retorno = u.getId_usuario();
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null,"Erro ao atualizar usuário " + e);
+        }finally{
+            try{
+                ConnectionFactory.closeConnection(conn, pstm);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Erro ao desconectar com o banco "+ e);
+            }
+        }
+        return retorno;
     }
     
 }
