@@ -22,4 +22,14 @@ public class UsuarioController {
         return dao.ListById(id_usuario);
     }
     
+    public List<Usuario> ListByNome(String nome){
+        UsuarioDAO dao = new UsuarioDAOImplements();
+        return dao.ListByNome(nome);
+    }
+    
+    public boolean remover(int id_usuario){
+        UsuarioDAO dao = new UsuarioDAOImplements();
+        return dao.remove(id_usuario);
+    }
+    
 }

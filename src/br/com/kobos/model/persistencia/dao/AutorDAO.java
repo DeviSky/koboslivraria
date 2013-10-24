@@ -9,5 +9,5 @@ public interface AutorDAO {
     List<Autor> listAll();
     Autor ListById(int id_autor);
     List<Autor> ListByNome(String nome);
-    
+    List<Autor> ListBySobrenome(String Sobrenome);
 }
