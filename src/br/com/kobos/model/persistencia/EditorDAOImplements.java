@@ -1,8 +1,8 @@
 
 package br.com.kobos.model.persistencia;
 
-import br.com.kobos.model.persistencia.dao.AutorDAO;
-import br.com.kobos.modelo.Autor;
+import br.com.kobos.model.persistencia.dao.EditorDAO;
+import br.com.kobos.modelo.Editor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,62 +11,64 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class AutorDAOImplements implements AutorDAO{
+public class EditorDAOImplements implements EditorDAO{
     
-    private static final String INSERT = "insert into AUTOR (nome_us, sobrenome_us, email_us) values (?, ?, ?);";
-    private static final String REMOVE = "delete from AUTOR where id_autor = ?;";
-    private static final String UPDATE = "update AUTOR set nome_us = ?, sobrenome_us = ?, email_us = ?";
-    private static final String LIST = "select * from AUTOR;";
-    private static final String LISTBYID = "select * from AUTOR where id_autor = ?";
-    private static final String LISTBYNOME = "select * from AUTOR where nome_au like ?";
-    private static final String LISTBYSOBRENOME = "select * from AUTOR where sobrenome_au like ?";
+    private static final String INSERT = "Insert into EDITOR () valuer ()";
+    private static final String REMOVE = "delete from EDITOR where id_editor = ?";
+    private static final String UPDATE = "update EDITOR set nnn = ?";
+    private static final String LIST = "select * EDITOR";
+    private static final String LISTBYID = "select * EDITOR where id_editor = ?";
+    private static final String LISTBYNOME = "select * from EDITOR where nome_ed like ?";
 
     @Override
-    public int salvar(Autor a) {
-        if (a.getId_autor() == 0){
-            return inserir(a);
+    public int salvar(Editor e) {
+        if (e.getId_editor() == 0){
+            return inserir(e);
         }else{
-            return update(a);
+            return update(e);
         }
     }
     
-    public int inserir(Autor a){
+    public int inserir(Editor e){
         Connection conn = null;
         PreparedStatement pstm = null;
         int retorno = -1;
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
-            pstm.setString(1, a.getNome());
-            pstm.setString(2, a.getSobrenome());
-            pstm.setString(3, a.getEmail());
+            pstm.setString(1, e.getNome());
+            pstm.setString(2, e.getTel());
+            pstm.setString(3, e.getEmail());
+            pstm.setString(4, e.getUrl());
+            pstm.setString(5, e.getCidade());
+            pstm.setString(6, e.getEndereco());
             pstm.execute();
             try(ResultSet rs = pstm.getGeneratedKeys()){
                 if(rs.next()){
                     retorno = rs.getInt(1);
                 }
             }
-        }catch(Exception e){
+        }catch(Exception ex){
             JOptionPane.showMessageDialog(null,"Erro ao adicionar um cadastro "+ e);
         }finally{
             try{
                 ConnectionFactory.closeConnection(conn, pstm);
-            }catch (Exception e){
-               JOptionPane.showMessageDialog(null,"Erro ao desconectar com o banco " + e);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null,"Erro ao desconetar ao banco " + ex);
             }
         }
         return retorno;
     }
 
     @Override
-    public boolean remove(int id_autor) {
+    public boolean remove(int id_editor) {
         boolean status = false;
         Connection conn = null;
         PreparedStatement pstm = null;
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(REMOVE);
-            pstm.setInt(1, id_autor);
+            pstm.setInt(1, id_editor);
             pstm.execute();
             status = true;
         }catch(Exception e){
@@ -82,24 +84,27 @@ public class AutorDAOImplements implements AutorDAO{
     }
 
     @Override
-    public List<Autor> listAll() {
+    public List<Editor> listAll() {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Autor> autores = new ArrayList<>();
+        List<Editor> editores = new ArrayList<>();
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LIST);
             rs = pstm.executeQuery();
             while (rs.next()){
-                Autor a = new Autor();
-                a.setNome(rs.getString("nome_au"));
-                a.setSobrenome(rs.getString("sobrenome_au"));
-                a.setEmail(rs.getString("email_au"));
-                autores.add(a);
+                Editor ed = new Editor();
+                ed.setNome(rs.getString("nome_ed"));
+                ed.setTel(rs.getString("telefone_ed"));
+                ed.setEmail(rs.getString("email_ed"));
+                ed.setUrl(rs.getString("url_ed"));
+                ed.setCidade(rs.getString("cidade_ed"));
+                ed.setEndereco(rs.getString("endereco_ed"));
+                editores.add(ed);
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro ao listar autores " + e);
+            JOptionPane.showMessageDialog(null,"Erro ao listar editores " + e);
         }finally{
             try{
                 ConnectionFactory.closeConnection(conn, pstm, rs);
@@ -107,26 +112,29 @@ public class AutorDAOImplements implements AutorDAO{
                 JOptionPane.showMessageDialog(null,"Erro ao desconectar com o banco " + e);
             }
         }
-        return autores;
+        return editores;
     }
 
     @Override
-    public Autor ListById(int id_autor) {
+    public Editor ListById(int id_editor) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        Autor a = new Autor();
+        Editor ed = new Editor();
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
             rs = pstm.executeQuery();
             while (rs.next()){
-                a.setNome(rs.getString("nome_au"));
-                a.setSobrenome(rs.getString("sobrenome_au"));
-                a.setEmail(rs.getString("email_us"));
+                ed.setNome(rs.getString("nome_ed"));
+                ed.setTel(rs.getString("telefone_ed"));
+                ed.setEmail(rs.getString("email_ed"));
+                ed.setUrl(rs.getString("url_ed"));
+                ed.setCidade(rs.getString("cidade_ed"));
+                ed.setEndereco(rs.getString("endereco_ed"));
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro ao listar autores " + e);
+            JOptionPane.showMessageDialog(null,"Erro ao listar editores " + e);
         }finally{
             try{
                 ConnectionFactory.closeConnection(conn, pstm, rs);
@@ -134,25 +142,28 @@ public class AutorDAOImplements implements AutorDAO{
                 JOptionPane.showMessageDialog(null,"Erro ao desconectar com o banco " + e);
             }
         }
-        return a;
+        return ed;
     }
 
     @Override
-    public List<Autor> ListByNome(String nome) {
+    public List<Editor> ListByNome(String nome) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        List<Autor> autores = new ArrayList<>();
+        List<Editor> editores = new ArrayList<>();
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
             rs = pstm.executeQuery();
             while(rs.next()){
-                Autor a = new Autor();
-                a.setNome(rs.getString("nome_au"));
-                a.setSobrenome(rs.getString("sobrenome_au"));
-                a.setEmail(rs.getString("email_au"));
-                autores.add(a);
+                Editor ed = new Editor();
+                ed.setNome(rs.getString("nome_ed"));
+                ed.setTel(rs.getString("telefone_ed"));
+                ed.setEmail(rs.getString("email_ed"));
+                ed.setUrl(rs.getString("url_ed"));
+                ed.setCidade(rs.getString("cidade_ed"));
+                ed.setEndereco(rs.getString("endereco_ed"));
+                editores.add(ed);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar autor por nome " + e);
@@ -163,22 +174,24 @@ public class AutorDAOImplements implements AutorDAO{
                 JOptionPane.showMessageDialog(null,"Erro ao desconectar com o banco " + e);
             }
         }
-        return autores;
+        return editores;
     }
     
-    
-    public int update(Autor a){
+    public int update(Editor ed){
         Connection conn = null;
         PreparedStatement pstm = null;
         int retorno = -1;
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(UPDATE);
-            pstm.setString(1, a.getNome());
-            pstm.setString(2, a.getSobrenome());
-            pstm.setString(3, a.getEmail());
+            pstm.setString(1, ed.getNome());
+            pstm.setString(2, ed.getTel());
+            pstm.setString(3, ed.getEmail());
+            pstm.setString(4, ed.getUrl());
+            pstm.setString(5, ed.getCidade());
+            pstm.setString(6, ed.getEndereco());
             pstm.execute();
-            retorno = a.getId_autor();
+            retorno = ed.getId_editor();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao atualizar cadastro " + e);
         }finally{
@@ -189,34 +202,5 @@ public class AutorDAOImplements implements AutorDAO{
             }
         }
         return retorno;
-    }
-
-    @Override
-    public List<Autor> ListBySobrenome(String Sobrenome) {
-        Connection conn = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        List<Autor> autores = new ArrayList<>();
-        try{
-            conn = ConnectionFactory.getConnection();
-            pstm = conn.prepareStatement(LISTBYSOBRENOME);
-            rs = pstm.executeQuery();
-            while(rs.next()){
-                Autor a = new Autor();
-                a.setNome(rs.getString("nome_au"));
-                a.setSobrenome(rs.getString("sobrenome_au"));
-                a.setEmail(rs.getString("email_au"));
-                autores.add(a);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null,"Erro ao listar autores por sobrenome " + e);
-        }finally{
-            try{
-                ConnectionFactory.closeConnection(conn, pstm, rs);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Erro ao desconectar do banco " + e);
-            }
-        }
-        return autores;
     }
 }
