@@ -1,13 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.com.kobos.app;
 
-/**
- *
- * @author Pee
- */
+import br.com.kobos.view.JanelaLogin;
+
 public class Principal {
-    
+    public static void mains(String[] args){
+        JanelaLogin jl = new JanelaLogin();
+        jl.setLocationRelativeTo(null);
+        jl.setVisible(true);
+    }
 }

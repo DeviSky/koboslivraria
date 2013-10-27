@@ -58,14 +58,14 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
     }
 
     @Override
-    public boolean remove(int id_funcionario) {
+    public boolean remove(int id_manutencao) {
         boolean status = false;
         Connection conn = null;
         PreparedStatement pstm = null;
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(REMOVE);
-            pstm.setInt(1, id_funcionario);
+            pstm.setInt(1, id_manutencao);
             pstm.execute();
             status = true;
         }catch(Exception e){
@@ -94,7 +94,7 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
                 Manutencao m = new Manutencao();
                 m.setMotivo(rs.getString("nome_fn"));
                 m.setTipo(rs.getString("telefone_fn"));
-                m.setData(rs.getString("endereco_fn"));
+                m.setData(rs.getDate("endereco_fn"));
                 manutencoes.add(m);
             }
         }catch(Exception e){
@@ -110,7 +110,7 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
     }
 
     @Override
-    public Manutencao ListById(int id_fornecedor) {
+    public Manutencao listById(int id_manutencao) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -122,7 +122,7 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
             while (rs.next()){
                 m.setMotivo(rs.getString("nome_fn"));
                 m.setTipo(rs.getString("telefone_fn"));
-                m.setData(rs.getString("endereco_fn"));
+                m.setData(rs.getDate("endereco_fn"));
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar manutencoes " + e);
@@ -150,7 +150,7 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
                 Manutencao m = new Manutencao();
                 m.setMotivo(rs.getString("nome_fn"));
                 m.setTipo(rs.getString("telefone_fn"));
-                m.setData(rs.getString("endereco_fn"));
+                m.setData(rs.getDate("endereco_fn"));
                 manutencoes.add(m);
             }
         }catch(Exception e){

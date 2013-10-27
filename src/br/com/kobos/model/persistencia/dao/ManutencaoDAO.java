@@ -8,6 +8,6 @@ public interface ManutencaoDAO {
     int salvar (Manutencao m);
     boolean remove(int id_manutencao);
     List<Manutencao> listAll();
-    Manutencao listById(int id_fornecedor);
+    Manutencao listById(int id_manutencao);
     List<Manutencao> ListByNome(String nome);
 }

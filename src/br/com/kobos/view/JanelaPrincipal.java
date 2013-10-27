@@ -28,14 +28,31 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         jToolBar1 = new javax.swing.JToolBar();
         btAutor = new javax.swing.JButton();
+        btCategoria = new javax.swing.JButton();
+        btEditor = new javax.swing.JButton();
+        btFornecedor = new javax.swing.JButton();
+        btFuncionario = new javax.swing.JButton();
+        btLivro = new javax.swing.JButton();
+        btLoja = new javax.swing.JButton();
+        btManutencao = new javax.swing.JButton();
+        btUsuario = new javax.swing.JButton();
+        btVenda = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         mNovo = new javax.swing.JMenu();
         mCadastro = new javax.swing.JMenu();
         miAutor = new javax.swing.JMenuItem();
+        mCategoria = new javax.swing.JMenuItem();
+        mEditor = new javax.swing.JMenuItem();
+        mFornecedor = new javax.swing.JMenuItem();
+        mFuncionario = new javax.swing.JMenuItem();
+        mLivro = new javax.swing.JMenuItem();
+        mLoja = new javax.swing.JMenuItem();
+        mManutencao = new javax.swing.JMenuItem();
+        mUsuario = new javax.swing.JMenuItem();
+        mVenda = new javax.swing.JMenuItem();
         mRelatorios = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jToolBar1.setRollover(true);
 
@@ -50,12 +67,113 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
         jToolBar1.add(btAutor);
 
+        btCategoria.setText("Categoria");
+        btCategoria.setFocusable(false);
+        btCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btCategoria);
+
+        btEditor.setText("Editor");
+        btEditor.setFocusable(false);
+        btEditor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btEditor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btEditor);
+
+        btFornecedor.setText("Fornecedor");
+        btFornecedor.setFocusable(false);
+        btFornecedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btFornecedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btFornecedor);
+
+        btFuncionario.setText("Funcionário");
+        btFuncionario.setFocusable(false);
+        btFuncionario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btFuncionario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btFuncionario);
+
+        btLivro.setText("Livro");
+        btLivro.setFocusable(false);
+        btLivro.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btLivro.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btLivro);
+
+        btLoja.setText("Loja");
+        btLoja.setFocusable(false);
+        btLoja.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btLoja.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btLoja);
+
+        btManutencao.setText("Manutenção");
+        btManutencao.setFocusable(false);
+        btManutencao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btManutencao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btManutencao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btManutencaoActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btManutencao);
+
+        btUsuario.setText("Usuário");
+        btUsuario.setFocusable(false);
+        btUsuario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btUsuario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btUsuarioActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btUsuario);
+
+        btVenda.setText("Venda");
+        btVenda.setFocusable(false);
+        btVenda.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btVenda.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(btVenda);
+
         mNovo.setText("Novo");
 
         mCadastro.setText("Cadastro");
 
         miAutor.setText("Autor");
         mCadastro.add(miAutor);
+
+        mCategoria.setText("Categoria");
+        mCadastro.add(mCategoria);
+
+        mEditor.setText("Editor");
+        mCadastro.add(mEditor);
+
+        mFornecedor.setText("Fornecedor");
+        mCadastro.add(mFornecedor);
+
+        mFuncionario.setText("Funcionário");
+        mFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mFuncionarioActionPerformed(evt);
+            }
+        });
+        mCadastro.add(mFuncionario);
+
+        mLivro.setText("Livro");
+        mCadastro.add(mLivro);
+
+        mLoja.setText("Loja");
+        mLoja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mLojaActionPerformed(evt);
+            }
+        });
+        mCadastro.add(mLoja);
+
+        mManutencao.setText("Manutenção");
+        mCadastro.add(mManutencao);
+
+        mUsuario.setText("Usuário");
+        mCadastro.add(mUsuario);
+
+        mVenda.setText("Venda");
+        mCadastro.add(mVenda);
 
         mNovo.add(mCadastro);
 
@@ -88,13 +206,49 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         al.setVisible(true);
     }//GEN-LAST:event_btAutorActionPerformed
 
+    private void btManutencaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btManutencaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btManutencaoActionPerformed
+
+    private void mFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mFuncionarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mFuncionarioActionPerformed
+
+    private void mLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mLojaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mLojaActionPerformed
+
+    private void btUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btUsuarioActionPerformed
+        UsuarioListaGUI ul = new UsuarioListaGUI();
+        ul.setLocationRelativeTo(null);
+        ul.setVisible(true);
+    }//GEN-LAST:event_btUsuarioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAutor;
+    private javax.swing.JButton btCategoria;
+    private javax.swing.JButton btEditor;
+    private javax.swing.JButton btFornecedor;
+    private javax.swing.JButton btFuncionario;
+    private javax.swing.JButton btLivro;
+    private javax.swing.JButton btLoja;
+    private javax.swing.JButton btManutencao;
+    private javax.swing.JButton btUsuario;
+    private javax.swing.JButton btVenda;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JMenu mCadastro;
+    private javax.swing.JMenuItem mCategoria;
+    private javax.swing.JMenuItem mEditor;
+    private javax.swing.JMenuItem mFornecedor;
+    private javax.swing.JMenuItem mFuncionario;
+    private javax.swing.JMenuItem mLivro;
+    private javax.swing.JMenuItem mLoja;
+    private javax.swing.JMenuItem mManutencao;
     private javax.swing.JMenu mNovo;
     private javax.swing.JMenu mRelatorios;
+    private javax.swing.JMenuItem mUsuario;
+    private javax.swing.JMenuItem mVenda;
     private javax.swing.JMenuItem miAutor;
     // End of variables declaration//GEN-END:variables
 }
