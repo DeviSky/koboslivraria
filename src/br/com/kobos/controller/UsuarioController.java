@@ -7,9 +7,9 @@ import java.util.List;
 
 public class UsuarioController {
     
-    public int salvar(){
+    public int salvar(Usuario u){
         UsuarioDAO dao = new UsuarioDAOImplements();
-        return dao.salvar(null);
+        return dao.salvar(u);
     }
     
     public List<Usuario> listAll(){

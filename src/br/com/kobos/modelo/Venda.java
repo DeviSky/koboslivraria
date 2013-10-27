@@ -2,13 +2,13 @@ package br.com.kobos.modelo;
 
 import java.sql.Date;
 
-public class Vendas {
+public class Venda {
 
     private int id_vendas;
     private Date dtVenda;
     private int quantidade;
 
-    public Vendas() {
+    public Venda() {
     }
 
     public int getId_vendas() {

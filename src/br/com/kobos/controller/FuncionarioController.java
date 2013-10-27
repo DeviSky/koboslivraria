@@ -1,35 +1,35 @@
 
 package br.com.kobos.controller;
 
-import br.com.kobos.model.persistencia.FornecedorDAOImplements;
-import br.com.kobos.model.persistencia.dao.FornecedorDAO;
-import br.com.kobos.modelo.Fornecedor;
+import br.com.kobos.model.persistencia.FuncionarioDAOImplements;
+import br.com.kobos.model.persistencia.dao.FuncionarioDAO;
+import br.com.kobos.modelo.Funcionario;
 import java.util.List;
 
 public class FuncionarioController {
-    public int salvar(Fornecedor a){
-        FornecedorDAO dao = new FornecedorDAOImplements();
-        return dao.salvar(a);
+    
+    public int salvar(){
+        FuncionarioDAO dao = new FuncionarioDAOImplements();
+        return dao.salvar(null);
     }
     
-    public List<Fornecedor> listAll(){
-        FornecedorDAO dao = new FornecedorDAOImplements();
+    public List<Funcionario> listAll(){
+        FuncionarioDAO dao = new FuncionarioDAOImplements();
         return dao.listAll();
     }
     
-    public Fornecedor ListById(int id_fornecedor){
-        FornecedorDAO dao = new FornecedorDAOImplements();
-        return dao.ListById(id_fornecedor);
+    public Funcionario ListById(int id_funcionario){
+        FuncionarioDAO dao = new FuncionarioDAOImplements();
+        return dao.ListById(id_funcionario);
     }
     
-    public List<Fornecedor> ListByNome(String nome){
-        FornecedorDAO dao = new FornecedorDAOImplements();
-        return dao.ListByNome(nome);       
-    }
-
-    public boolean remover(int id_fornecedor){
-        FornecedorDAO dao = new FornecedorDAOImplements();
-        return dao.remove(id_fornecedor);
+    public List<Funcionario> ListByNome(String nome){
+        FuncionarioDAO dao = new FuncionarioDAOImplements();
+        return dao.ListByNome(nome);
     }
     
+    public boolean remover(int id_funcionario){
+        FuncionarioDAO dao = new FuncionarioDAOImplements();
+        return dao.remove(id_funcionario);
+    }
 }

@@ -3,6 +3,7 @@ package br.com.kobos.modelo;
 public class Livro {
 
     private int isbn;
+    private int id_livro;
     private String titulo;
     private String subtitulo;
     private String tema;
@@ -14,6 +15,14 @@ public class Livro {
     private String edicao;
 
     public Livro() {
+    }
+
+    public int getId_livro() {
+        return id_livro;
+    }
+
+    public void setId_livro(int id_livro) {
+        this.id_livro = id_livro;
     }
 
     public int getIsbn() {
