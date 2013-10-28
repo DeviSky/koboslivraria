@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FuncionarioController {
     
-    public int salvar(){
+    public int salvar(Funcionario f){
         FuncionarioDAO dao = new FuncionarioDAOImplements();
         return dao.salvar(null);
     }

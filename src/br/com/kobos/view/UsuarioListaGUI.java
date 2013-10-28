@@ -38,13 +38,13 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txPesquisar = new javax.swing.JTextField();
         painelRolagem = new javax.swing.JScrollPane();
-        txInserir = new javax.swing.JButton();
-        txAtualizar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btInserir = new javax.swing.JButton();
+        btAtualizar = new javax.swing.JButton();
+        btDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar de Autores", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar de Autores", 2, 0));
 
         jLabel1.setText("Nome:");
 
@@ -54,30 +54,30 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
             }
         });
 
-        txInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
-        txInserir.setToolTipText("Inserir");
-        txInserir.setContentAreaFilled(false);
-        txInserir.addActionListener(new java.awt.event.ActionListener() {
+        btInserir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/add.png"))); // NOI18N
+        btInserir.setToolTipText("Inserir");
+        btInserir.setContentAreaFilled(false);
+        btInserir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txInserirActionPerformed(evt);
+                btInserirActionPerformed(evt);
             }
         });
 
-        txAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/edit.png"))); // NOI18N
-        txAtualizar.setToolTipText("Editar");
-        txAtualizar.setContentAreaFilled(false);
-        txAtualizar.addActionListener(new java.awt.event.ActionListener() {
+        btAtualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/edit.png"))); // NOI18N
+        btAtualizar.setToolTipText("Editar");
+        btAtualizar.setContentAreaFilled(false);
+        btAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txAtualizarActionPerformed(evt);
+                btAtualizarActionPerformed(evt);
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/delete.png"))); // NOI18N
-        jButton1.setToolTipText("Deletar");
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btDeletar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/delete.png"))); // NOI18N
+        btDeletar.setToolTipText("Deletar");
+        btDeletar.setContentAreaFilled(false);
+        btDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btDeletarActionPerformed(evt);
             }
         });
 
@@ -95,11 +95,11 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
                     .addComponent(painelRolagem)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFundoLayout.createSequentialGroup()
                         .addGap(0, 310, Short.MAX_VALUE)
-                        .addComponent(txInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
                 .addContainerGap())
         );
@@ -113,9 +113,9 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txInserir)
-                        .addComponent(txAtualizar))
-                    .addComponent(jButton1))
+                        .addComponent(btInserir)
+                        .addComponent(btAtualizar))
+                    .addComponent(btDeletar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -135,14 +135,14 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txInserirActionPerformed
+    private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
         AutorInserirGUI ai = new AutorInserirGUI(modelo);
         ai.setLocationRelativeTo(null);
         ai.setVisible(true);
         
-    }//GEN-LAST:event_txInserirActionPerformed
+    }//GEN-LAST:event_btInserirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeletarActionPerformed
         int linhaSelecionada = -1;
         
         linhaSelecionada = tabela.getSelectedRow();
@@ -158,9 +158,9 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btDeletarActionPerformed
 
-    private void txAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txAtualizarActionPerformed
+    private void btAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAtualizarActionPerformed
         int linhaSelecionada = -1;
         
         linhaSelecionada = tabela.getSelectedRow();
@@ -172,7 +172,7 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
-    }//GEN-LAST:event_txAtualizarActionPerformed
+    }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
         String nome = txPesquisar.getText();
@@ -184,12 +184,12 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txPesquisarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btAtualizar;
+    private javax.swing.JButton btDeletar;
+    private javax.swing.JButton btInserir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel painelFundo;
     private javax.swing.JScrollPane painelRolagem;
-    private javax.swing.JButton txAtualizar;
-    private javax.swing.JButton txInserir;
     private javax.swing.JTextField txPesquisar;
     // End of variables declaration//GEN-END:variables
 

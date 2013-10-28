@@ -89,6 +89,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         btFuncionario.setFocusable(false);
         btFuncionario.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btFuncionario.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFuncionarioActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btFuncionario);
 
         btLivro.setText("Livro");
@@ -223,6 +228,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         ul.setLocationRelativeTo(null);
         ul.setVisible(true);
     }//GEN-LAST:event_btUsuarioActionPerformed
+
+    private void btFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFuncionarioActionPerformed
+        FuncionarioListaGUI fl = new FuncionarioListaGUI();
+        fl.setLocationRelativeTo(null);
+        fl.setVisible(true);
+    }//GEN-LAST:event_btFuncionarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAutor;

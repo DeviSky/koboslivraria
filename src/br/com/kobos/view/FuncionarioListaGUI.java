@@ -4,8 +4,8 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.AutorController;
-import br.com.kobos.modelo.Autor;
+import br.com.kobos.controller.FuncionarioController;
+import br.com.kobos.modelo.Funcionario;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pee
  */
-public class AutorListaGUI extends javax.swing.JFrame {
+public class FuncionarioListaGUI extends javax.swing.JFrame {
 
     private JTable tabela;
     private DefaultTableModel modelo = new DefaultTableModel();
     
-    public AutorListaGUI() {
+    public FuncionarioListaGUI() {
         initComponents();
         criaJTable();
         painelRolagem.setViewportView(tabela);
@@ -41,8 +41,6 @@ public class AutorListaGUI extends javax.swing.JFrame {
         btInserir = new javax.swing.JButton();
         btAtualizar = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txSobrenome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,14 +81,6 @@ public class AutorListaGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Sobrenome:");
-
-        txSobrenome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txSobrenomeActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelFundoLayout = new javax.swing.GroupLayout(painelFundo);
         painelFundo.setLayout(painelFundoLayout);
         painelFundoLayout.setHorizontalGroup(
@@ -99,17 +89,10 @@ public class AutorListaGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelFundoLayout.createSequentialGroup()
-                        .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelRolagem)
-                            .addGroup(painelFundoLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(txPesquisar))
-                            .addGroup(painelFundoLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txSobrenome)))
-                        .addContainerGap())
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
+                    .addComponent(painelRolagem)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFundoLayout.createSequentialGroup()
                         .addGap(0, 310, Short.MAX_VALUE)
                         .addComponent(btInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,19 +100,16 @@ public class AutorListaGUI extends javax.swing.JFrame {
                         .addComponent(btAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))))
+                        .addGap(8, 8, 8)))
+                .addContainerGap())
         );
         painelFundoLayout.setVerticalGroup(
             painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelFundoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -137,7 +117,7 @@ public class AutorListaGUI extends javax.swing.JFrame {
                         .addComponent(btAtualizar))
                     .addComponent(btDeletar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelRolagem, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -156,9 +136,9 @@ public class AutorListaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-        AutorInserirGUI ai = new AutorInserirGUI(modelo);
-        ai.setLocationRelativeTo(null);
-        ai.setVisible(true);
+        FuncionarioInserirGUI fi = new FuncionarioInserirGUI(modelo);
+        fi.setLocationRelativeTo(null);
+        fi.setVisible(true);
         
     }//GEN-LAST:event_btInserirActionPerformed
 
@@ -168,11 +148,11 @@ public class AutorListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if (linhaSelecionada >= 0){
-            int id_autor = (int)tabela.getValueAt(linhaSelecionada, 0);
+            int id_funcionario = (int)tabela.getValueAt(linhaSelecionada, 0);
             
-            AutorController ac = new AutorController();
+            FuncionarioController fc = new FuncionarioController();
             
-            if (ac.remover(id_autor)){
+            if (fc.remover(id_funcionario)){
                 modelo.removeRow(linhaSelecionada);               
             }
         }else{
@@ -186,8 +166,8 @@ public class AutorListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_autor = (int) tabela.getValueAt(linhaSelecionada, 0);
-            AutorInserirGUI ai = new AutorInserirGUI(modelo, linhaSelecionada, id_autor);
+            int id_funcionario = (int) tabela.getValueAt(linhaSelecionada, 0);
+            FuncionarioInserirGUI ai = new FuncionarioInserirGUI(modelo, linhaSelecionada, id_funcionario);
             ai.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
@@ -196,47 +176,36 @@ public class AutorListaGUI extends javax.swing.JFrame {
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
         String nome = txPesquisar.getText();
-        AutorController ac = new AutorController();
+        FuncionarioController fc = new FuncionarioController();
         modelo.setNumRows(0);
-        for(Autor a: ac.ListByNome(nome)){
-            modelo.addRow(new Object[]{a.getId_autor(), a.getNome(), a.getSobrenome(), a.getEmail()});
+        for(Funcionario f: fc.ListByNome(nome)){
+            modelo.addRow(new Object[]{f.getId_funcionario(), f.getNome(), f.getFuncao(), f.getSalario()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
-
-    private void txSobrenomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txSobrenomeActionPerformed
-        String sobrenome = txSobrenome.getText();
-        AutorController ac = new AutorController();
-        modelo.setNumRows(0);
-        for(Autor a: ac.ListBySobrenome(sobrenome)){
-            modelo.addRow(new Object[]{a.getId_autor(), a.getNome(), a.getSobrenome(), a.getEmail()});            
-        }
-    }//GEN-LAST:event_txSobrenomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btDeletar;
     private javax.swing.JButton btInserir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel painelFundo;
     private javax.swing.JScrollPane painelRolagem;
     private javax.swing.JTextField txPesquisar;
-    private javax.swing.JTextField txSobrenome;
     // End of variables declaration//GEN-END:variables
 
     private void criaJTable(){
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
-        modelo.addColumn("Sobrenome");
-        modelo.addColumn("E-mail");
+        modelo.addColumn("Função");
+        modelo.addColumn("Salário");
         preencherJTable();
     }
     
     private void preencherJTable(){
-        AutorController ac = new AutorController();
-        for(Autor a: ac.listAll()){
-            modelo.addRow(new Object[]{a.getId_autor(),a.getNome(),a.getSobrenome(),a.getEmail()});
+        FuncionarioController fc = new FuncionarioController();
+        for(Funcionario f: fc.listAll()){
+            modelo.addRow(new Object[]{f.getId_funcionario(), f.getNome(), f.getFuncao(), f.getSalario()});
         }
     }
 }
