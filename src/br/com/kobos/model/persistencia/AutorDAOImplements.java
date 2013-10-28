@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 
 public class AutorDAOImplements implements AutorDAO{
     
-    private static final String INSERT = "insert into AUTOR (nome_us, sobrenome_us, email_us) values (?, ?, ?);";
+    private static final String INSERT = "insert into AUTOR (nome_au, sobrenome_au, email_au) values (?, ?, ?);";
     private static final String REMOVE = "delete from AUTOR where id_autor = ?;";
-    private static final String UPDATE = "update AUTOR set nome_us = ?, sobrenome_us = ?, email_us = ?";
+    private static final String UPDATE = "update AUTOR set nome_au = ?, sobrenome_au = ?, email_au = ? where id_autor = ?";
     private static final String LIST = "select * from AUTOR;";
     private static final String LISTBYID = "select * from AUTOR where id_autor = ?";
     private static final String LISTBYNOME = "select * from AUTOR where nome_au like ?";

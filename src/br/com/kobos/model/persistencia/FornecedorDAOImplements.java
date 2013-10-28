@@ -12,13 +12,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class FornecedorDAOImplements implements FornecedorDAO{
-    private static final String INSERT = "insert into FORNECEDOR (nome_us, sobrenome_us, email_us) values (?, ?, ?);";
-    private static final String REMOVE = "delete from FORNECEDOR where id_funcionario = ?;";
-    private static final String UPDATE = "update FORNECEDOR set nome_us = ?, sobrenome_us = ?, email_us = ?";
+    private static final String INSERT = "insert into FORNECEDOR (nome_fd, endereco_fd, telefone_fd) values (?, ?, ?);";
+    private static final String REMOVE = "delete from FORNECEDOR where id_fornecedor = ?;";
+    private static final String UPDATE = "update FORNECEDOR set nome_fd = ?, endereco_fd = ?, telefone_fd = ? where id_fornecedor = ?";
     private static final String LIST = "select * from FORNECEDOR;";
-    private static final String LISTBYID = "select * from FORNECEDOR where id_funcionario = ?";
-    private static final String LISTBYNOME = "select * from FORNECEDOR where nome_au like ?";
-    private static final String LISTBYSOBRENOME = "select * from FORNECEDOR where sobrenome_au like ?";
+    private static final String LISTBYID = "select * from FORNECEDOR where id_fornecedor = ?";
+    private static final String LISTBYNOME = "select * from FORNECEDOR where nome_fd like ?";
 
     @Override
     public int salvar(Fornecedor f) {
@@ -58,14 +57,14 @@ public class FornecedorDAOImplements implements FornecedorDAO{
     }
 
     @Override
-    public boolean remove(int id_funcionario) {
+    public boolean remove(int id_fornecedor) {
         boolean status = false;
         Connection conn = null;
         PreparedStatement pstm = null;
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(REMOVE);
-            pstm.setInt(1, id_funcionario);
+            pstm.setInt(1, id_fornecedor);
             pstm.execute();
             status = true;
         }catch(Exception e){

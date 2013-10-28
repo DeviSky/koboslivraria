@@ -13,16 +13,16 @@ import javax.swing.JOptionPane;
 
 public class ClienteDAOImplements implements ClienteDAO{
     
-    private static final String INSERT = "insert into CLIENTE where id_cliente = ?";
-    private static final String REMOVE = "delete from CLIENTE where id_autor = ?";
-    private static final String UPDATE = "update AUTOR set";
+    private static final String INSERT = "insert into CLIENTE (nome_cl, telefone_cl, bairro_cl, rg_cl, cidade_cl, endereco_cl, LOJA_id_loja) values (?, ?, ?, ?, ?, ?, ?);";
+    private static final String REMOVE = "delete from CLIENTE where id_cliente = ?";
+    private static final String UPDATE = "update CLIENTE set nome_cl = ?, telefone_cl = ?, bairro_cl = ?, rg_cl = ?, cidade_cl = ?, endereco_cl = ?, LOJA_id_loja = ? where id_cliente = ?";
     private static final String LIST = "select * CLIENTE";
     private static final String LISTBYID = "select * CLIENTE where id_cliente = ?";
     private static final String LISTBYNOME = "select * from CLIENTE where nome_cl like ?";
 
     @Override
     public int salvar(Cliente c) {
-        if(c.getId_pessoa()== 0){
+        if(c.getId_cliente()== 0){
             return inserir(c);
         }else{
             return update(c);
@@ -42,6 +42,7 @@ public class ClienteDAOImplements implements ClienteDAO{
             pstm.setString(4, c.getEndereco());
             pstm.setString(5, c.getCidade());
             pstm.setString(6, c.getBairro());
+            pstm.setInt(7, c.getLOJA_id_loja());
             pstm.execute();
             try(ResultSet rs = pstm.getGeneratedKeys()){
                 if(rs.next()){
@@ -95,12 +96,13 @@ public class ClienteDAOImplements implements ClienteDAO{
             rs = pstm.executeQuery();
             while(rs.next()){
                 Cliente c = new Cliente();
-                c.setNome(rs.getString(""));
-                c.setTelefone(rs.getString(""));
-                c.setRg(rs.getString(""));
-                c.setCidade(rs.getString(""));
-                c.setBairro(rs.getString(""));
-                c.setEndereco(rs.getString(""));
+                c.setNome(rs.getString("nome_cl"));
+                c.setTelefone(rs.getString("telefone_cl"));
+                c.setRg(rs.getString("rg_cl"));
+                c.setCidade(rs.getString("cidade_cl"));
+                c.setBairro(rs.getString("bairro_cl"));
+                c.setEndereco(rs.getString("endereco_cl"));
+                c.setLOJA_id_loja(rs.getInt("LOJA_id_loja"));
                 clientes.add(c);                
             }
         }catch(Exception e){
@@ -126,12 +128,13 @@ public class ClienteDAOImplements implements ClienteDAO{
             pstm = conn.prepareStatement(LISTBYID);
             rs = pstm.executeQuery();
             while(rs.next()){
-                c.setNome(rs.getString("nome_au"));
-                c.setTelefone(rs.getString("nome_au"));
-                c.setRg(rs.getString("nome_au"));
-                c.setCidade(rs.getString("nome_au"));
-                c.setBairro(rs.getString("nome_au"));
-                c.setEndereco(rs.getString("nome_au"));
+                c.setNome(rs.getString("nome_cl"));
+                c.setTelefone(rs.getString("telefone_cl"));
+                c.setRg(rs.getString("rg_cl"));
+                c.setCidade(rs.getString("cidade_cl"));
+                c.setBairro(rs.getString("bairro_cl"));
+                c.setEndereco(rs.getString("endereco_cl"));
+                c.setLOJA_id_loja(rs.getInt("LOJA_id_loja"));
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar clientes por código " + e);
@@ -156,14 +159,15 @@ public class ClienteDAOImplements implements ClienteDAO{
             pstm = conn.prepareStatement(LISTBYNOME);
             rs = pstm.executeQuery();
             while(rs.next()){
-                Cliente a = new Cliente();
-                a.setNome(rs.getString("nome_au"));
-                a.setTelefone(rs.getString("sobrenome_au"));
-                a.setRg(rs.getString("email_au"));
-                a.setCidade(rs.getString("email_au"));
-                a.setBairro(rs.getString("email_au"));
-                a.setEndereco(rs.getString("email_au"));
-                clientes.add(a);
+                Cliente c = new Cliente();
+                c.setNome(rs.getString("nome_cl"));
+                c.setTelefone(rs.getString("telefone_cl"));
+                c.setRg(rs.getString("rg_cl"));
+                c.setCidade(rs.getString("cidade_cl"));
+                c.setBairro(rs.getString("bairro_cl"));
+                c.setEndereco(rs.getString("endereco_cl"));
+                c.setLOJA_id_loja(rs.getInt("LOJA_id_loja"));
+                clientes.add(c);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar cliente por nome " + e);
@@ -187,11 +191,12 @@ public class ClienteDAOImplements implements ClienteDAO{
             pstm.setString(1, c.getNome());
             pstm.setString(2, c.getTelefone());
             pstm.setString(3, c.getRg());
-            pstm.setString(3, c.getCidade());
-            pstm.setString(3, c.getBairro());
-            pstm.setString(3, c.getEndereco());
+            pstm.setString(4, c.getCidade());
+            pstm.setString(5, c.getBairro());
+            pstm.setString(6, c.getEndereco());
+            pstm.setInt(7, c.getLOJA_id_loja());
             pstm.execute();
-            retorno = c.getId_pessoa();
+            retorno = c.getId_cliente();
         }catch (Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao atualizar cadastro " + e);
         }finally{

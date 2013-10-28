@@ -1,14 +1,32 @@
 package br.com.kobos.modelo;
 
-public class Funcionario {
+public class Funcionario extends Pessoa{
 
     private int id_funcionario;
     private String cpf;
-    private String salario;
+    private double salario;
     private String funcao;
     private String ctps;
+    private int LOJA_id_loja;
+    private int USUARIO_id_usuario;
 
     public Funcionario() {
+    }
+
+    public int getLOJA_id_loja() {
+        return LOJA_id_loja;
+    }
+
+    public void setLOJA_id_loja(int LOJA_id_loja) {
+        this.LOJA_id_loja = LOJA_id_loja;
+    }
+
+    public int getUSUARIO_id_usuario() {
+        return USUARIO_id_usuario;
+    }
+
+    public void setUSUARIO_id_usuario(int USUARIO_id_usuario) {
+        this.USUARIO_id_usuario = USUARIO_id_usuario;
     }
 
     public int getId_funcionario() {
@@ -27,11 +45,11 @@ public class Funcionario {
         this.cpf = cpf;
     }
 
-    public String getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(String salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 

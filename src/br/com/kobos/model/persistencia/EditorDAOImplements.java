@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
 
 public class EditorDAOImplements implements EditorDAO{
     
-    private static final String INSERT = "Insert into EDITOR () valuer ()";
+    private static final String INSERT = "Insert into EDITOR (nome_ed, email_ed, url_ed, endereco_ed, cidade_ed) values (?, ?, ?, ?, ?)";
     private static final String REMOVE = "delete from EDITOR where id_editor = ?";
-    private static final String UPDATE = "update EDITOR set nnn = ?";
+    private static final String UPDATE = "update EDITOR set nome_ed = ?, email_ed = ?, url_ed = ?, endereco_ed = ?, cidade_ed = ? where id_editor = ?";
     private static final String LIST = "select * EDITOR";
     private static final String LISTBYID = "select * EDITOR where id_editor = ?";
     private static final String LISTBYNOME = "select * from EDITOR where nome_ed like ?";
@@ -37,7 +37,6 @@ public class EditorDAOImplements implements EditorDAO{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, e.getNome());
-            pstm.setString(2, e.getTel());
             pstm.setString(3, e.getEmail());
             pstm.setString(4, e.getUrl());
             pstm.setString(5, e.getCidade());
@@ -96,7 +95,6 @@ public class EditorDAOImplements implements EditorDAO{
             while (rs.next()){
                 Editor ed = new Editor();
                 ed.setNome(rs.getString("nome_ed"));
-                ed.setTel(rs.getString("telefone_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
                 ed.setCidade(rs.getString("cidade_ed"));
@@ -127,7 +125,6 @@ public class EditorDAOImplements implements EditorDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 ed.setNome(rs.getString("nome_ed"));
-                ed.setTel(rs.getString("telefone_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
                 ed.setCidade(rs.getString("cidade_ed"));
@@ -158,7 +155,6 @@ public class EditorDAOImplements implements EditorDAO{
             while(rs.next()){
                 Editor ed = new Editor();
                 ed.setNome(rs.getString("nome_ed"));
-                ed.setTel(rs.getString("telefone_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
                 ed.setCidade(rs.getString("cidade_ed"));
@@ -185,7 +181,6 @@ public class EditorDAOImplements implements EditorDAO{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(UPDATE);
             pstm.setString(1, ed.getNome());
-            pstm.setString(2, ed.getTel());
             pstm.setString(3, ed.getEmail());
             pstm.setString(4, ed.getUrl());
             pstm.setString(5, ed.getCidade());

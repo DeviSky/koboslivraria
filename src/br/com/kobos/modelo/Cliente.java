@@ -2,21 +2,30 @@
 
 public class Cliente extends Pessoa {
 
-    private int id_pessoa;
+    private int id_cliente;
+    private int LOJA_id_loja;
 
     public Cliente() {
     }
 
-    public int getId_pessoa() {
-        return id_pessoa;
+    public int getId_cliente() {
+        return id_cliente;
     }
 
-    public void setId_pessoa(int id_pessoa) {
-        this.id_pessoa = id_pessoa;
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public int getLOJA_id_loja() {
+        return LOJA_id_loja;
+    }
+
+    public void setLOJA_id_loja(int LOJA_id_loja) {
+        this.LOJA_id_loja = LOJA_id_loja;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "id_pessoa=" + id_pessoa + '}';
+        return "Cliente{" + "id_cliente=" + id_cliente + '}';
     }
 }

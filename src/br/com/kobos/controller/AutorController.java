@@ -3,7 +3,6 @@ package br.com.kobos.controller;
 
 import br.com.kobos.model.persistencia.AutorDAOImplements;
 import br.com.kobos.model.persistencia.dao.AutorDAO;
-import br.com.kobos.model.persistencia.dao.UsuarioDAO;
 import br.com.kobos.modelo.Autor;
 import java.util.List;
 

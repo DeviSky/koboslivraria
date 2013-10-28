@@ -8,7 +8,6 @@ public class Editor {
     private String url;
     private String endereco;
     private String cidade;
-    private String tel;
 
     public Editor() {
     }
@@ -61,16 +60,8 @@ public class Editor {
         this.cidade = cidade;
     }
 
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
     @Override
     public String toString() {
-        return "Editor{" + "id_editor=" + id_editor + ", nome=" + nome + ", email=" + email + ", url=" + url + ", endereco=" + endereco + ", cidade=" + cidade + ", tel=" + tel + '}';
+        return "Editor{" + "id_editor=" + id_editor + ", nome=" + nome + ", email=" + email + ", url=" + url + ", endereco=" + endereco + ", cidade=" + cidade + '}';
     }
 }

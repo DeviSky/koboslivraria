@@ -6,13 +6,17 @@ public class Livro {
     private int id_livro;
     private String titulo;
     private String subtitulo;
-    private String tema;
+    private Categoria tema;
+    private Loja loja;
+    private Editor editor;
+    private Autor autor;
     private String resumo;
     private String palavrasChave;
     private double volume;
     private int qtEstoque;
     private double preco;
-    private String edicao;
+    private double royalty;
+    private int edicao;
 
     public Livro() {
     }
@@ -23,6 +27,30 @@ public class Livro {
 
     public void setId_livro(int id_livro) {
         this.id_livro = id_livro;
+    }
+
+    public Editor getEditor() {
+        return editor;
+    }
+
+    public void setEditor(Editor editor) {
+        this.editor = editor;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public Loja getLoja() {
+        return loja;
+    }
+
+    public void setLoja(Loja loja) {
+        this.loja = loja;
     }
 
     public int getIsbn() {
@@ -49,11 +77,11 @@ public class Livro {
         this.subtitulo = subtitulo;
     }
 
-    public String getTema() {
+    public Categoria getTema() {
         return tema;
     }
 
-    public void setTema(String tema) {
+    public void setTema(Categoria tema) {
         this.tema = tema;
     }
 
@@ -97,16 +125,25 @@ public class Livro {
         this.preco = preco;
     }
 
-    public String getEdicao() {
+    public double getRoyalty() {
+        return royalty;
+    }
+
+    public void setRoyalty(double royalty) {
+        this.royalty = royalty;
+    }
+
+    public int getEdicao() {
         return edicao;
     }
 
-    public void setEdicao(String edicao) {
+    public void setEdicao(int edicao) {
         this.edicao = edicao;
     }
 
     @Override
     public String toString() {
-        return "Livro{" + "isbn=" + isbn + ", titulo=" + titulo + ", subtitulo=" + subtitulo + ", tema=" + tema + ", resumo=" + resumo + ", palavrasChave=" + palavrasChave + ", volume=" + volume + ", qtEstoque=" + qtEstoque + ", preco=" + preco + ", edicao=" + edicao + '}';
+        return "Livro{" + "isbn=" + isbn + ", id_livro=" + id_livro + ", titulo=" + titulo + ", subtitulo=" + subtitulo + ", tema=" + tema + ", loja=" + loja + ", editor=" + editor + ", autor=" + autor + ", resumo=" + resumo + ", palavrasChave=" + palavrasChave + ", volume=" + volume + ", qtEstoque=" + qtEstoque + ", preco=" + preco + ", royalty=" + royalty + ", edicao=" + edicao + '}';
     }
+    
 }

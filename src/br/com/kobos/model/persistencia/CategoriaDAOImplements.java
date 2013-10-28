@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 
 public class CategoriaDAOImplements implements CategoriaDAO{
     
-    private static final String INSERT = "Insert into Categoria ()";
+    private static final String INSERT = "Insert into Categoria (descricao_ct) values (?)";
     private static final String REMOVE = "delete from CATEGORIA where id_categoria = ?";
-    private static final String UPDATE = "update CATEGORIA set nome_ct";
+    private static final String UPDATE = "update CATEGORIA set descricao_ct = ? where id_categoria = ?";
     private static final String LIST = "select * from CATEGORIA";
     private static final String LISTBYID = "select * from CATEGORIA where id_categoria = ?";
-    private static final String LISTBYNOME = "select * from CATEGORIA where nome_ct like ?";
+    private static final String LISTBYNOME = "select * from CATEGORIA where descricao_ct like ?";
 
     @Override
     public int salvar(Categoria c) {

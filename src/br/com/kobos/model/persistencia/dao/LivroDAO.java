@@ -10,4 +10,5 @@ public interface LivroDAO {
     List<Livro> listAll();
     Livro ListById(int id_livro);
     List<Livro> ListByNome(String nome);
+    List<Livro> ListByAutor(int id_autor);
 }
