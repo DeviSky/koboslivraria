@@ -32,4 +32,9 @@ public class UsuarioController {
         return dao.remove(id_usuario);
     }
     
+    public boolean ValidaUsuario(String usuario, String senha){
+        UsuarioDAO dao = new UsuarioDAOImplements();
+        return dao.validaUsuario(usuario, senha);
+    }
+    
 }

@@ -10,5 +10,6 @@ public interface UsuarioDAO {
     List<Usuario> ListAll();
     Usuario ListById(int id_usuario);
     List<Usuario> ListByNome(String nome);
+    boolean validaUsuario(String usuario, String senha);
     
 }

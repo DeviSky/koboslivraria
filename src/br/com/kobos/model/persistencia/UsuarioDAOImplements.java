@@ -20,6 +20,7 @@ public class UsuarioDAOImplements implements UsuarioDAO{
     private static final String UPDATE = "update USUARIO set nome_us = ?, usuario_us = ?, senha_us = ?, nivelAcesso_us = ? where id_usuario = ?;";
     private static final String LISTBYID = "select * from USUARIO where id_usuario = ?";
     private static final String LISTBYNOME = "select * from USUARIO where nome_us like ?;";
+    private static final String VALIDAUSUARIO = "select usuario_us, senha_us where usuario_us = ? and senha_us = ?";
     
     @Override
     public int salvar(Usuario us) {
@@ -196,5 +197,31 @@ public class UsuarioDAOImplements implements UsuarioDAO{
         }
         return retorno;
     }
-       
+    @Override
+    public boolean validaUsuario(String usuario, String senha) {
+        boolean eValido = false;
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Usuario us = new Usuario();
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(VALIDAUSUARIO);
+            pstm.setString(1, usuario);
+            pstm.setString(2, senha);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                return true;
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
+        }finally{
+            try{
+                ConnectionFactory.closeConnection(conn, pstm, rs);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Erro ao desconectar com banco" + e);
+            }
+        }
+        return eValido;
+    }
 }

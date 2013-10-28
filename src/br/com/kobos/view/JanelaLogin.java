@@ -4,6 +4,10 @@
  */
 package br.com.kobos.view;
 
+import br.com.kobos.controller.FuncionarioController;
+import br.com.kobos.controller.UsuarioController;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author guest01
@@ -79,10 +83,7 @@ public class JanelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
-        JanelaPrincipal jp = new JanelaPrincipal();
-        jp.setLocationRelativeTo(null);
-        jp.setExtendedState(jp.MAXIMIZED_BOTH);
-        jp.setVisible(true);
+        validaUsuario();
     }//GEN-LAST:event_btEntrarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -94,4 +95,22 @@ public class JanelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txSenha;
     private javax.swing.JTextField txUsuario;
     // End of variables declaration//GEN-END:variables
+    
+    public void validaUsuario() {
+        UsuarioController uc = new UsuarioController();
+        JanelaPrincipal jp = new JanelaPrincipal();
+        
+        String login = txUsuario.getText();
+        String senha = txSenha.getText();
+        
+        boolean resposta = uc.ValidaUsuario(senha, senha);
+        
+        if(resposta == true){
+            jp.setVisible(true);
+            this.dispose();
+        } else if (txSenha.getText().equals("") || txUsuario.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!");
+        }
+    }
 }
+
