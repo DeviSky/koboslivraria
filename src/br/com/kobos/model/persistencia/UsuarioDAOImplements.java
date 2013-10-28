@@ -7,6 +7,7 @@ import br.com.kobos.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ public class UsuarioDAOImplements implements UsuarioDAO{
     private static final String UPDATE = "update USUARIO set nome_us = ?, usuario_us = ?, senha_us = ?, nivelAcesso_us = ? where id_usuario = ?;";
     private static final String LISTBYID = "select * from USUARIO where id_usuario = ?";
     private static final String LISTBYNOME = "select * from USUARIO where nome_us like ?;";
-    private static final String VALIDAUSUARIO = "select usuario_us, senha_us where usuario_us = ? and senha_us = ?";
+    private static final String VALIDAUSUARIO = "select usuario_us, senha_us from USUARIO where usuario_us = ? and senha_us = ?";
     
     @Override
     public int salvar(Usuario us) {
@@ -198,30 +199,31 @@ public class UsuarioDAOImplements implements UsuarioDAO{
         return retorno;
     }
     @Override
-    public boolean validaUsuario(String usuario, String senha) {
-        boolean eValido = false;
+    public boolean validaUsuario(String login, String senha) {
+    
+        boolean autenticado = false;
+        //conectar com banco
         Connection conn = null;
+        //pra enviar alguma coisa pro banco
         PreparedStatement pstm = null;
-        ResultSet rs = null;
-        Usuario us = new Usuario();
-        try{
+        //receber alguma coisa do banco
+        ResultSet rs;
+        Funcionario funcionario = new Funcionario();
+        try {
+            //conectar com banco
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(VALIDAUSUARIO);
-            pstm.setString(1, usuario);
-            pstm.setString(2, senha);
+            pstm.setString(1,login);
+            pstm.setString(2,senha);
             rs = pstm.executeQuery();
-            while(rs.next()){
-                return true;
+            while (rs.next()) {
+                return true;               
             }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
-        }finally{
-            try{
-                ConnectionFactory.closeConnection(conn, pstm, rs);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Erro ao desconectar com banco" + e);
-            }
+           
+            ConnectionFactory.closeConnection(conn, pstm, rs);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao validar login e senha: " + e.getMessage());
         }
-        return eValido;
+        return autenticado;
     }
 }

@@ -57,7 +57,7 @@ public class JanelaLogin extends javax.swing.JFrame {
                 btEntrarActionPerformed(evt);
             }
         });
-        btEntrar.setBounds(240, 140, 50, 30);
+        btEntrar.setBounds(270, 110, 50, 30);
         jDesktopPane1.add(btEntrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         txUsuario.setBounds(110, 60, 150, 30);
         jDesktopPane1.add(txUsuario, javax.swing.JLayeredPane.DEFAULT_LAYER);

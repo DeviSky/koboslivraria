@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class ConnectionFactory {
     
     private static final String STR_CONEXAO = "jdbc:mysql://localhost:3306/";
-    private static final String DATABASE = "kobosbd";
+    private static final String DATABASE = "kobosdb";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     
