@@ -4,8 +4,8 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.AutorController;
-import br.com.kobos.modelo.Autor;
+import br.com.kobos.controller.UsuarioController;
+import br.com.kobos.modelo.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -44,7 +44,7 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar de Autores", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar deUsuários", 2, 0));
 
         jLabel1.setText("Nome:");
 
@@ -136,9 +136,9 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-        AutorInserirGUI ai = new AutorInserirGUI(modelo);
-        ai.setLocationRelativeTo(null);
-        ai.setVisible(true);
+        UsuarioInserirGUI ui = new UsuarioInserirGUI(modelo);
+        ui.setLocationRelativeTo(null);
+        ui.setVisible(true);
         
     }//GEN-LAST:event_btInserirActionPerformed
 
@@ -148,11 +148,11 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if (linhaSelecionada >= 0){
-            int id_autor = (int)tabela.getValueAt(linhaSelecionada, 0);
+            int id_usuario = (int)tabela.getValueAt(linhaSelecionada, 0);
             
-            AutorController ac = new AutorController();
+            UsuarioController uc = new UsuarioController();
             
-            if (ac.remover(id_autor)){
+            if (uc.remover(id_usuario)){
                 modelo.removeRow(linhaSelecionada);               
             }
         }else{
@@ -166,9 +166,9 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_autor = (int) tabela.getValueAt(linhaSelecionada, 0);
-            AutorInserirGUI ai = new AutorInserirGUI(modelo, linhaSelecionada, id_autor);
-            ai.setVisible(true);
+            int id_usuario = (int) tabela.getValueAt(linhaSelecionada, 0);
+            UsuarioInserirGUI ui = new UsuarioInserirGUI(modelo, linhaSelecionada, id_usuario);
+            ui.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
@@ -176,10 +176,10 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
         String nome = txPesquisar.getText();
-        AutorController ac = new AutorController();
+        UsuarioController uc = new UsuarioController();
         modelo.setNumRows(0);
-        for(Autor a: ac.ListByNome(nome)){
-            modelo.addRow(new Object[]{a.getId_autor(), a.getNome(), a.getSobrenome(), a.getEmail()});
+        for(Usuario u: uc.ListByNome(nome)){
+            modelo.addRow(new Object[]{u.getId_usuario(), u.getNome_us(), u.getUsuario_us(), u.getSenha_us(), u.getNivelAcesso_us()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
 
@@ -197,15 +197,15 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
-        modelo.addColumn("Sobrenome");
-        modelo.addColumn("E-mail");
+        modelo.addColumn("Usuário");
+        modelo.addColumn("Nivel de Acesso");
         preencherJTable();
     }
     
     private void preencherJTable(){
-        AutorController ac = new AutorController();
-        for(Autor a: ac.listAll()){
-            modelo.addRow(new Object[]{a.getId_autor(),a.getNome(),a.getSobrenome(),a.getEmail()});
+        UsuarioController uc = new UsuarioController();
+        for(Usuario u: uc.listAll()){
+            modelo.addRow(new Object[]{u.getId_usuario(),u.getNome_us(), u.getUsuario_us(), u.getSenha_us(), u.getNivelAcesso_us()});
         }
     }
 }

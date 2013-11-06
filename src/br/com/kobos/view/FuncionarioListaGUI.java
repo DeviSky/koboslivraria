@@ -44,7 +44,7 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar de Autores", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar de funcionários", 2, 0));
 
         jLabel1.setText("Nome:");
 
@@ -167,8 +167,8 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         
         if(linhaSelecionada >= 0){
             int id_funcionario = (int) tabela.getValueAt(linhaSelecionada, 0);
-            FuncionarioInserirGUI ai = new FuncionarioInserirGUI(modelo, linhaSelecionada, id_funcionario);
-            ai.setVisible(true);
+            FuncionarioInserirGUI fi = new FuncionarioInserirGUI(modelo, linhaSelecionada, id_funcionario);
+            fi.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }

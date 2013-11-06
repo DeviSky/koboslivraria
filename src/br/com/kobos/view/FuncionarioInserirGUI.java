@@ -208,6 +208,11 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         txLoja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -412,11 +417,11 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Autor cadastrado com sucesso!");
             }
         }else{
-                int id = fc.salvar(f);
-                if(id > 0){
-                    modelo.removeRow(linhaSelecionada);
-                    modelo.addRow(new Object[]{id,  f.getNome(), f.getTelefone(), f.getBairro(), f.getCidade(), f.getRg(), f.getCpf(), f.getEndereco(), f.getSalario(), f.getCtps(), f.getFuncao(), f.getLOJA_id_loja(), f.getUSUARIO_id_usuario()});
-                    JOptionPane.showMessageDialog(null, "Autor atualizado com sucesso!");
+            int id = fc.salvar(f);
+            if(id > 0){
+                modelo.removeRow(linhaSelecionada);
+                modelo.addRow(new Object[]{id,  f.getNome(), f.getTelefone(), f.getBairro(), f.getCidade(), f.getRg(), f.getCpf(), f.getEndereco(), f.getSalario(), f.getCtps(), f.getFuncao(), f.getLOJA_id_loja(), f.getUSUARIO_id_usuario()});
+                JOptionPane.showMessageDialog(null, "Autor atualizado com sucesso!");
             }
         }
         dispose();
@@ -437,6 +442,10 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
     private void txFuncaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txFuncaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txFuncaoActionPerformed
+
+    private void txUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txUsuarioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLimpar;

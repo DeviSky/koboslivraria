@@ -167,6 +167,7 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Funcionario f = new Funcionario();
