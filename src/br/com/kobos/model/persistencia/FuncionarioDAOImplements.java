@@ -100,6 +100,7 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Funcionario f = new Funcionario();
+                f.setId_funcionario(rs.getInt("id_funcionario"));
                 f.setNome(rs.getString("nome_fn"));
                 f.setTelefone(rs.getString("telefone_fn"));
                 f.setBairro(rs.getString("bairro_fn"));
@@ -133,6 +134,7 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_funcionario);
             rs = pstm.executeQuery();
             while (rs.next()){
                 f.setNome(rs.getString("nome_fn"));

@@ -62,12 +62,14 @@ public class AutorInserirGUI extends javax.swing.JFrame {
 
         jTextField1.setText("jTextField1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de autores");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de autores", 2, 1, new java.awt.Font("Calibri", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
 
         jLabel1.setText("Código:");
 
+        txCodigo.setEditable(false);
         txCodigo.setBackground(new java.awt.Color(204, 204, 204));
         txCodigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         txCodigo.setEnabled(false);
@@ -154,7 +156,7 @@ public class AutorInserirGUI extends javax.swing.JFrame {
                                 .addComponent(btSalvar))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
+                                .addGap(23, 23, 23)
                                 .addComponent(txEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)

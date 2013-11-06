@@ -12,13 +12,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class LojaDAOImplements implements LojaDAO{
-    private static final String INSERT = "insert into FORNECEDOR (nome_us, sobrenome_us, email_us) values (?, ?, ?);";
-    private static final String REMOVE = "delete from FORNECEDOR where id_funcionario = ?;";
-    private static final String UPDATE = "update FORNECEDOR set nome_us = ?, sobrenome_us = ?, email_us = ?";
-    private static final String LIST = "select * from FORNECEDOR;";
-    private static final String LISTBYID = "select * from FORNECEDOR where id_funcionario = ?";
-    private static final String LISTBYNOME = "select * from FORNECEDOR where nome_au like ?";
-    private static final String LISTBYSOBRENOME = "select * from FORNECEDOR where sobrenome_au like ?";
+    private static final String INSERT = "insert into LOJA (nome_lj, endereco_lj, telefone_lj, cep_lj) values (?, ?, ?, ?);";
+    private static final String REMOVE = "delete from LOJA where id_loja = ?;";
+    private static final String UPDATE = "update LOJA set nome_lj = ?, endereco_lj = ?, telefone_lj = ?, cep_lj = ?";
+    private static final String LIST = "select * from LOJA ;";
+    private static final String LISTBYID = "select * from LOJA where id_loja = ?";
+    private static final String LISTBYNOME = "select * from LOJA where nome_lj like ?";
 
     @Override
     public int salvar(Loja l) {
@@ -37,8 +36,9 @@ public class LojaDAOImplements implements LojaDAO{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
             pstm.setString(1, l.getNome());
-            pstm.setString(2, l.getTelefone());
-            pstm.setString(3, l.getEndereco());
+            pstm.setString(2, l.getEndereco());
+            pstm.setString(3, l.getTelefone());
+            pstm.setString(4, l.getCep());
             pstm.execute();
             try(ResultSet rs = pstm.getGeneratedKeys()){
                 if(rs.next()){
@@ -92,9 +92,11 @@ public class LojaDAOImplements implements LojaDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Loja l = new Loja();
-                l.setNome(rs.getString("nome_fn"));
-                l.setTelefone(rs.getString("telefone_fn"));
-                l.setEndereco(rs.getString("endereco_fn"));
+                l.setId_loja(rs.getInt("id_loja"));
+                l.setNome(rs.getString("nome_lj"));
+                l.setEndereco(rs.getString("endereco_lj"));
+                l.setTelefone(rs.getString("telefone_lj"));
+                l.setCep(rs.getString("cep_lj"));
                 lojas.add(l);
             }
         }catch(Exception e){
@@ -118,11 +120,14 @@ public class LojaDAOImplements implements LojaDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_loja);
             rs = pstm.executeQuery();
             while (rs.next()){
+                l.setId_loja(rs.getInt("id_loja"));
                 l.setNome(rs.getString("nome_lj"));
-                l.setTelefone(rs.getString("telefone_lj"));
                 l.setEndereco(rs.getString("endereco_lj"));
+                l.setTelefone(rs.getString("telefone_lj"));
+                l.setCep(rs.getString("cep_lj"));
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar lojas " + e);
@@ -145,12 +150,15 @@ public class LojaDAOImplements implements LojaDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Loja l = new Loja();
-                l.setNome(rs.getString("nome_fn"));
-                l.setTelefone(rs.getString("telefone_fn"));
-                l.setEndereco(rs.getString("endereco_fn"));
+                l.setId_loja(rs.getInt("id_loja"));
+                l.setNome(rs.getString("nome_lj"));
+                l.setEndereco(rs.getString("endereco_lj"));
+                l.setTelefone(rs.getString("telefone_lj"));
+                l.setCep(rs.getString("cep_lj"));
                 lojas.add(l);
             }
         }catch(Exception e){

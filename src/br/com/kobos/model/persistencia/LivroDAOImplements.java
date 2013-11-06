@@ -4,6 +4,7 @@ package br.com.kobos.model.persistencia;
 import br.com.kobos.model.persistencia.dao.LivroDAO;
 import br.com.kobos.modelo.Editor;
 import br.com.kobos.modelo.Livro;
+import br.com.kobos.modelo.Loja;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -110,23 +111,28 @@ public class LivroDAOImplements implements LivroDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Livro l = new Livro();
-                //titulo_lv, subtitulo_lv, palavraChave_lv, preco_lv, royalty_lv, 
-                //resumo_lv, nEdi_lv, volume_lv, qtEstoque_lv, isbn, LIVROA_id_editora, LOJA_id_loja, id_autor
-                l.setTitulo(rs.getString("titulo_lv"));
-                l.setSubtitulo(rs.getString("subtituli_lv"));
-                l.setPalavrasChave(rs.getString("palavraChave_lv"));
-                l.setPreco(rs.getDouble("preco_lv"));
-                l.setRoyalty(rs.getDouble("royalty_lv"));
-                l.setResumo(rs.getString("resumo_lv"));
-                l.setEdicao(rs.getInt("nEdi_lv"));
-                l.setVolume(rs.getDouble("volume_lv"));
-                l.setIsbn(rs.getInt("endereco_fn"));
+                l.setId_livro(rs.getInt("livro.id_livro"));
+                l.setTitulo(rs.getString("livro.titulo_lv"));
+                l.setSubtitulo(rs.getString("livro.subtitulo_lv"));
+                l.setPalavrasChave(rs.getString("livro.palavraChave_lv"));
+                l.setPreco(rs.getDouble("livro.preco_lv"));
+                l.setRoyalty(rs.getDouble("livro.royalty_lv"));
+                l.setResumo(rs.getString("livro.resumo_lv"));
+                l.setEdicao(rs.getInt("livro.nEdi_lv"));
+                l.setVolume(rs.getDouble("livro.volume_lv"));
+                l.setQtEstoque(rs.getInt("livro.qtEstoque_lv"));
+                l.setIsbn(rs.getInt("livro.isbn"));
+                
                 Editor ed = new Editor();
-                //ed.setId_editor(l.setEditor(rs.getInt("LIVROA_id_editora")));
-                //l.setEditor(rs.getInt("LIVROA_id_editora"));
-                //l.setLoja(rs.getInt("LOJA_id_loja"));
+                ed.setId_editor(rs.getInt("Editora.id_editora"));
+                l.setEditor(ed);
+                
+                Loja lj = new Loja();
+                lj.setId_loja(rs.getInt("Loja.id_loja"));
+                
+                //Autor 
                 //l.setAutor(rs.getInt("id_autor"));
-                livros.add(l);
+                //livros.add(l);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null,"Erro ao listar livros " + e);

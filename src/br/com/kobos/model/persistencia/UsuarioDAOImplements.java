@@ -96,6 +96,7 @@ public class UsuarioDAOImplements implements UsuarioDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Usuario u = new Usuario();
+                u.setId_usuario(rs.getInt("id_Usuario"));
                 u.setNome_us(rs.getString("nome_us"));
                 u.setUsuario_us(rs.getString("usuario_us"));
                 u.setSenha_us(rs.getString("senha_us"));
@@ -123,6 +124,7 @@ public class UsuarioDAOImplements implements UsuarioDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_usuario);
             rs = pstm.executeQuery();
             while (rs.next()){
                 u.setId_usuario(rs.getInt("id_usuario"));
@@ -152,6 +154,7 @@ public class UsuarioDAOImplements implements UsuarioDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while (rs.next()){
                 Usuario u = new Usuario();

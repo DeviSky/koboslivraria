@@ -53,6 +53,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mRelatorios = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Kobos - Tela principal");
 
         jToolBar1.setRollover(true);
 
@@ -106,6 +107,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         btLoja.setFocusable(false);
         btLoja.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btLoja.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btLoja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btLojaActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btLoja);
 
         btManutencao.setText("Manutenção");
@@ -234,6 +240,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         fl.setLocationRelativeTo(null);
         fl.setVisible(true);
     }//GEN-LAST:event_btFuncionarioActionPerformed
+
+    private void btLojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLojaActionPerformed
+        LojaListaGUI ll = new LojaListaGUI();
+        ll.setLocationRelativeTo(null);
+        ll.setVisible(true);
+    }//GEN-LAST:event_btLojaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAutor;

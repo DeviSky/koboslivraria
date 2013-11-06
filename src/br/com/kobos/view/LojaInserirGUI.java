@@ -4,8 +4,8 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.UsuarioController;
-import br.com.kobos.modelo.Usuario;
+import br.com.kobos.controller.LojaController;
+import br.com.kobos.modelo.Loja;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,30 +13,30 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author guest01
  */
-public class UsuarioInserirGUI extends javax.swing.JFrame {
+public class LojaInserirGUI extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     private int linhaSelecionada;
     /**
      * Creates new form AutorInserirGUI
      */
-    public UsuarioInserirGUI(DefaultTableModel modelo) {
+    public LojaInserirGUI(DefaultTableModel modelo) {
         this.modelo = modelo;
         initComponents();
     }
     
-    public UsuarioInserirGUI(DefaultTableModel modelo, int linhaSelecionada, int id_usuario){
+    public LojaInserirGUI(DefaultTableModel modelo, int linhaSelecionada, int id_loja){
         this.modelo = modelo;
         this.linhaSelecionada = linhaSelecionada;
         initComponents();
         
-        UsuarioController uc = new UsuarioController();
-        Usuario u = uc.ListById(id_usuario);
-        txCodigo.setText(Integer.toString(u.getId_usuario()));
-        txNome.setText(u.getNome_us());
-        txUsuario.setText(u.getUsuario_us());
-        txSenha.setText(u.getSenha_us());
-        cbNivelAcesso.setSelectedItem(u.getNivelAcesso_us());
+        LojaController jc = new LojaController();
+        Loja lj = jc.ListById(id_loja);
+        txCodigo.setText(Integer.toString(lj.getId_loja()));
+        txNome.setText(lj.getNome());
+        txEndereco.setText(lj.getEndereco());
+        txTelefone.setText(lj.getTelefone());
+        txCep.setText(lj.getCep());
     }
 
     /**
@@ -54,21 +54,21 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
         txCodigo = new javax.swing.JTextField();
         txNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txUsuario = new javax.swing.JTextField();
+        txEndereco = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btLimpar = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txSenha = new javax.swing.JTextField();
+        txTelefone = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cbNivelAcesso = new javax.swing.JComboBox();
+        txCep = new javax.swing.JTextField();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de usuários");
+        setTitle("Cadastro de lojas");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de usuários", 2, 1, new java.awt.Font("Calibri", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadastro de loja", 2, 1, new java.awt.Font("Calibri", 0, 14), new java.awt.Color(0, 0, 0))); // NOI18N
 
         jLabel1.setText("Código:");
 
@@ -90,14 +90,14 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
 
         jLabel2.setText("Nome:");
 
-        txUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        txUsuario.addActionListener(new java.awt.event.ActionListener() {
+        txEndereco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txEndereco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txUsuarioActionPerformed(evt);
+                txEnderecoActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Usuário");
+        jLabel4.setText("Endereço:");
 
         btLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/limpar.png"))); // NOI18N
         btLimpar.setToolTipText("Limpar");
@@ -120,18 +120,23 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Senha");
+        jLabel5.setText("Telefone:");
 
-        txSenha.addActionListener(new java.awt.event.ActionListener() {
+        txTelefone.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txSenhaActionPerformed(evt);
+                txTelefoneActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("Nível de Acesso");
+        jLabel3.setText("CEP:");
 
-        cbNivelAcesso.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Administrador", "Diretor", "Funcionário", "Gerente", " " }));
-        cbNivelAcesso.setSelectedIndex(2);
+        txCep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        txCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txCepActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,37 +144,35 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btSalvar))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
                         .addGap(18, 18, 18)
-                        .addComponent(cbNivelAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txEndereco)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(txTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)
-                                .addComponent(jLabel5)
+                                .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(txSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btSalvar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txNome)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(18, 18, 18)
-                        .addComponent(btLimpar)))
+                                .addComponent(txCep, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txNome, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 129, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addComponent(btLimpar)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,14 +189,14 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(cbNivelAcesso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                    .addComponent(txCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSalvar, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btLimpar, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -222,22 +225,22 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txNomeActionPerformed
 
-    private void txUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txUsuarioActionPerformed
+    private void txEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txEnderecoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txUsuarioActionPerformed
+    }//GEN-LAST:event_txEnderecoActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         txCodigo.setText("");
         txNome.setText("");
-        txUsuario.setText("");
-        txSenha.setText("");
-        cbNivelAcesso.setSelectedIndex(2);
+        txEndereco.setText("");
+        txTelefone.setText("");
+        txCep.setText("");
     }//GEN-LAST:event_btLimparActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        Usuario u = new Usuario();
+        Loja lj = new Loja();
         if (!(txCodigo.getText().equals("")) || (txCodigo.getText().equals(null))){
-            u.setId_usuario(Integer.parseInt(txCodigo.getText()));
+            lj.setId_loja(Integer.parseInt(txCodigo.getText()));
         }
         
         if (txNome.getText().equals("") || txNome.getText().equals(null)){
@@ -245,37 +248,40 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
             //btSalvarActionPerformed();
         }
         
-        u.setNome_us(txNome.getText());
-        u.setSenha_us(txSenha.getText());
-        u.setUsuario_us(txUsuario.getText());
-        u.setNivelAcesso_us(cbNivelAcesso.getSelectedItem().toString());
+        lj.setNome(txNome.getText());
+        lj.setEndereco(txEndereco.getText());
+        lj.setTelefone(txTelefone.getText());
+        lj.setCep(txCep.getText());
         
-        UsuarioController uc = new UsuarioController();
-        if (u.getId_usuario()== 0){
-            int id = uc.salvar(u);
+        LojaController lc = new LojaController();
+        if (lj.getId_loja() == 0){
+            int id = lc.salvar(lj);
             if(id > 0){
-                modelo.addRow(new Object[]{id, u.getNome_us(), u.getUsuario_us(), u.getSenha_us(), u.getNivelAcesso_us()});
-                JOptionPane.showMessageDialog(null,"Usuário cadastrado com sucesso!");
+                modelo.addRow(new Object[]{id, lj.getNome(), lj.getEndereco(), lj.getTelefone(), lj.getCep()});
+                JOptionPane.showMessageDialog(null,"Loja cadastrada com sucesso!");
             }
         }else{
-                int id = uc.salvar(u);
+                int id = lc.salvar(lj);
                 if(id > 0){
                     modelo.removeRow(linhaSelecionada);
-                    modelo.addRow(new Object[]{id, u.getNome_us(), u.getUsuario_us(), u.getSenha_us(), u.getNivelAcesso_us()});
-                    JOptionPane.showMessageDialog(null, "Usuário atualizado com sucesso!");
+                    modelo.addRow(new Object[]{id, lj.getNome(), lj.getEndereco(), lj.getTelefone(), lj.getCep()});
+                    JOptionPane.showMessageDialog(null, "Loja atualizado com sucesso!");
             }
         }
         dispose();
     }//GEN-LAST:event_btSalvarActionPerformed
 
-    private void txSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txSenhaActionPerformed
+    private void txTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txTelefoneActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txSenhaActionPerformed
+    }//GEN-LAST:event_txTelefoneActionPerformed
+
+    private void txCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txCepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txCepActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSalvar;
-    private javax.swing.JComboBox cbNivelAcesso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -283,9 +289,10 @@ public class UsuarioInserirGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txCep;
     private javax.swing.JTextField txCodigo;
+    private javax.swing.JTextField txEndereco;
     private javax.swing.JTextField txNome;
-    private javax.swing.JTextField txSenha;
-    private javax.swing.JTextField txUsuario;
+    private javax.swing.JTextField txTelefone;
     // End of variables declaration//GEN-END:variables
 }

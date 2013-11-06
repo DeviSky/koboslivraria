@@ -6,6 +6,7 @@ public class Loja {
     private String nome;
     private String endereco;
     private String telefone;
+    private String cep;
 
     public Loja() {
     }
@@ -42,8 +43,17 @@ public class Loja {
         this.telefone = telefone;
     }
 
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
     @Override
     public String toString() {
-        return "Loja{" + "id_loja=" + id_loja + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + '}';
+        return "Loja{" + "id_loja=" + id_loja + ", nome=" + nome + ", endereco=" + endereco + ", telefone=" + telefone + ", cep=" + cep + '}';
     }
+
 }

@@ -94,6 +94,7 @@ public class EditorDAOImplements implements EditorDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Editor ed = new Editor();
+                ed.setId_editor(rs.getInt("id_editor"));
                 ed.setNome(rs.getString("nome_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
@@ -122,8 +123,10 @@ public class EditorDAOImplements implements EditorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_editor);
             rs = pstm.executeQuery();
             while (rs.next()){
+                ed.setId_editor(rs.getInt("id_editor"));
                 ed.setNome(rs.getString("nome_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
@@ -151,9 +154,11 @@ public class EditorDAOImplements implements EditorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Editor ed = new Editor();
+                ed.setId_editor(rs.getInt("id_editor"));
                 ed.setNome(rs.getString("nome_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));

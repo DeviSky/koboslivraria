@@ -42,9 +42,10 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         btAtualizar = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listagem de usuários");
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar deUsuários", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de usuários", 2, 0));
 
         jLabel1.setText("Nome:");
 
@@ -166,7 +167,7 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_usuario = (int) tabela.getValueAt(linhaSelecionada, 0);
+            int id_usuario = (int)tabela.getValueAt(linhaSelecionada, 0);
             UsuarioInserirGUI ui = new UsuarioInserirGUI(modelo, linhaSelecionada, id_usuario);
             ui.setVisible(true);
         }else{

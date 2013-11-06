@@ -92,6 +92,7 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Manutencao m = new Manutencao();
+                m.setId_manutencao(rs.getInt("id_manutencao"));
                 m.setMotivo(rs.getString("nome_fn"));
                 m.setTipo(rs.getString("telefone_fn"));
                 m.setData(rs.getDate("endereco_fn"));
@@ -118,8 +119,10 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_manutencao);
             rs = pstm.executeQuery();
             while (rs.next()){
+                m.setId_manutencao(rs.getInt("id_manutencao"));
                 m.setMotivo(rs.getString("nome_fn"));
                 m.setTipo(rs.getString("telefone_fn"));
                 m.setData(rs.getDate("endereco_fn"));
@@ -145,9 +148,11 @@ public class ManutencaoDAOImplements implements ManutencaoDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Manutencao m = new Manutencao();
+                m.setId_manutencao(rs.getInt("id_manutencao"));
                 m.setMotivo(rs.getString("nome_fn"));
                 m.setTipo(rs.getString("telefone_fn"));
                 m.setData(rs.getDate("endereco_fn"));

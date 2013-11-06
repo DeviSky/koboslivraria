@@ -4,8 +4,8 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.FuncionarioController;
-import br.com.kobos.modelo.Funcionario;
+import br.com.kobos.controller.LojaController;
+import br.com.kobos.modelo.Loja;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pee
  */
-public class FuncionarioListaGUI extends javax.swing.JFrame {
+public class LojaListaGUI extends javax.swing.JFrame {
 
     private JTable tabela;
     private DefaultTableModel modelo = new DefaultTableModel();
     
-    public FuncionarioListaGUI() {
+    public LojaListaGUI() {
         initComponents();
         criaJTable();
         painelRolagem.setViewportView(tabela);
@@ -43,9 +43,9 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         btDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listagem de funcionários");
+        setTitle("Listagem de usuários");
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de funcionários", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de lojas", 2, 0));
 
         jLabel1.setText("Nome:");
 
@@ -107,7 +107,7 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         painelFundoLayout.setVerticalGroup(
             painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelFundoLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -118,7 +118,7 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
                         .addComponent(btAtualizar))
                     .addComponent(btDeletar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelRolagem, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -137,9 +137,9 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-        FuncionarioInserirGUI fi = new FuncionarioInserirGUI(modelo);
-        fi.setLocationRelativeTo(null);
-        fi.setVisible(true);
+        LojaInserirGUI li = new LojaInserirGUI(modelo);
+        li.setLocationRelativeTo(null);
+        li.setVisible(true);
         
     }//GEN-LAST:event_btInserirActionPerformed
 
@@ -149,11 +149,11 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if (linhaSelecionada >= 0){
-            int id_funcionario = (int)tabela.getValueAt(linhaSelecionada, 0);
+            int id_loja = (int)tabela.getValueAt(linhaSelecionada, 0);
             
-            FuncionarioController fc = new FuncionarioController();
+            LojaController lc = new LojaController();
             
-            if (fc.remover(id_funcionario)){
+            if (lc.remover(id_loja)){
                 modelo.removeRow(linhaSelecionada);               
             }
         }else{
@@ -167,9 +167,9 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_funcionario = (int) tabela.getValueAt(linhaSelecionada, 0);
-            FuncionarioInserirGUI fi = new FuncionarioInserirGUI(modelo, linhaSelecionada, id_funcionario);
-            fi.setVisible(true);
+            int id_loja = (int)tabela.getValueAt(linhaSelecionada, 0);
+            LojaInserirGUI li = new LojaInserirGUI(modelo, linhaSelecionada, id_loja);
+            li.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
@@ -177,10 +177,10 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
         String nome = txPesquisar.getText();
-        FuncionarioController fc = new FuncionarioController();
+        LojaController lc = new LojaController();
         modelo.setNumRows(0);
-        for(Funcionario f: fc.ListByNome(nome)){
-            modelo.addRow(new Object[]{f.getId_funcionario(), f.getNome(), f.getFuncao(), f.getSalario()});
+        for(Loja l: lc.listByNome(nome)){
+            modelo.addRow(new Object[]{l.getId_loja(), l.getNome(), l.getEndereco(), l.getEndereco(), l.getCep()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
 
@@ -198,15 +198,15 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
-        modelo.addColumn("Função");
-        modelo.addColumn("Salário");
+        modelo.addColumn("Telefone");
+        modelo.addColumn("Endereço");
         preencherJTable();
     }
     
     private void preencherJTable(){
-        FuncionarioController fc = new FuncionarioController();
-        for(Funcionario f: fc.listAll()){
-            modelo.addRow(new Object[]{f.getId_funcionario(), f.getNome(), f.getFuncao(), f.getSalario()});
+        LojaController lc = new LojaController();
+        for(Loja l: lc.ListAll()){
+            modelo.addRow(new Object[]{l.getId_loja(), l.getNome(), l.getEndereco(), l.getEndereco(), l.getCep()});
         }
     }
 }

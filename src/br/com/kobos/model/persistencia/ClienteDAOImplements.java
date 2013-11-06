@@ -96,6 +96,7 @@ public class ClienteDAOImplements implements ClienteDAO{
             rs = pstm.executeQuery();
             while(rs.next()){
                 Cliente c = new Cliente();
+                c.setId_cliente(rs.getInt("id_cliente"));
                 c.setNome(rs.getString("nome_cl"));
                 c.setTelefone(rs.getString("telefone_cl"));
                 c.setRg(rs.getString("rg_cl"));
@@ -126,6 +127,7 @@ public class ClienteDAOImplements implements ClienteDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_cliente);
             rs = pstm.executeQuery();
             while(rs.next()){
                 c.setNome(rs.getString("nome_cl"));
@@ -157,6 +159,7 @@ public class ClienteDAOImplements implements ClienteDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Cliente c = new Cliente();

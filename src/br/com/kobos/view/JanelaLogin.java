@@ -39,6 +39,11 @@ public class JanelaLogin extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Validação de usuário");
+        setAlwaysOnTop(true);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
+        setType(java.awt.Window.Type.UTILITY);
 
         jLabel1.setText("Usuário:");
         jLabel1.setBounds(110, 40, 60, 14);

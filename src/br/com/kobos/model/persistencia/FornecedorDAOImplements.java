@@ -91,6 +91,7 @@ public class FornecedorDAOImplements implements FornecedorDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Fornecedor f = new Fornecedor();
+                f.setId_fornecedor(rs.getInt("id_fornecedor"));
                 f.setNome(rs.getString("nome_fn"));
                 f.setTelefone(rs.getString("telefone_fn"));
                 f.setEndereco(rs.getString("endereco_fn"));
@@ -117,6 +118,7 @@ public class FornecedorDAOImplements implements FornecedorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_fornecedor);
             rs = pstm.executeQuery();
             while (rs.next()){
                 f.setNome(rs.getString("nome_fn"));
@@ -144,6 +146,7 @@ public class FornecedorDAOImplements implements FornecedorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1,"%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Fornecedor f = new Fornecedor();

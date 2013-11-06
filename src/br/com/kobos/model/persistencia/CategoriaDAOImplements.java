@@ -90,6 +90,7 @@ public class CategoriaDAOImplements implements CategoriaDAO{
             rs = pstm.executeQuery();
             while(rs.next()){
                 Categoria c = new Categoria();
+                c.setId_tipo(rs.getInt("id_categoria"));
                 c.setDescricao(rs.getString("descricao_ct"));
                 categorias.add(c);
             }
@@ -114,6 +115,7 @@ public class CategoriaDAOImplements implements CategoriaDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_categoria);
             rs = pstm.executeQuery();
             while(rs.next()){
                 c.setDescricao(rs.getString("descricao_ct"));                
@@ -139,6 +141,7 @@ public class CategoriaDAOImplements implements CategoriaDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Categoria c = new Categoria();

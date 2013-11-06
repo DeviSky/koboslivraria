@@ -93,6 +93,7 @@ public class AutorDAOImplements implements AutorDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Autor a = new Autor();
+                a.setId_autor(rs.getInt("id_autor"));
                 a.setNome(rs.getString("nome_au"));
                 a.setSobrenome(rs.getString("sobrenome_au"));
                 a.setEmail(rs.getString("email_au"));
@@ -119,6 +120,7 @@ public class AutorDAOImplements implements AutorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYID);
+            pstm.setInt(1, id_autor);
             rs = pstm.executeQuery();
             while (rs.next()){
                 a.setNome(rs.getString("nome_au"));
@@ -146,6 +148,7 @@ public class AutorDAOImplements implements AutorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
+            pstm.setString(1,"%" + nome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Autor a = new Autor();
@@ -200,9 +203,11 @@ public class AutorDAOImplements implements AutorDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYSOBRENOME);
+            pstm.setString(1, "%" + Sobrenome + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Autor a = new Autor();
+                a.setId_autor(rs.getInt("id_autor"));
                 a.setNome(rs.getString("nome_au"));
                 a.setSobrenome(rs.getString("sobrenome_au"));
                 a.setEmail(rs.getString("email_au"));

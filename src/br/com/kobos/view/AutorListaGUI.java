@@ -44,9 +44,10 @@ public class AutorListaGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txSobrenome = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Listagem de autores");
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisar de Autores", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de autores", 2, 0));
 
         jLabel1.setText("Nome:");
 
