@@ -123,6 +123,7 @@ public class AutorDAOImplements implements AutorDAO{
             pstm.setInt(1, id_autor);
             rs = pstm.executeQuery();
             while (rs.next()){
+                a.setId_autor(rs.getInt("id_autor"));
                 a.setNome(rs.getString("nome_au"));
                 a.setSobrenome(rs.getString("sobrenome_au"));
                 a.setEmail(rs.getString("email_us"));

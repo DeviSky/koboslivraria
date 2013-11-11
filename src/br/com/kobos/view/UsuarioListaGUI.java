@@ -206,7 +206,7 @@ public class UsuarioListaGUI extends javax.swing.JFrame {
     private void preencherJTable(){
         UsuarioController uc = new UsuarioController();
         for(Usuario u: uc.listAll()){
-            modelo.addRow(new Object[]{u.getId_usuario(),u.getNome_us(), u.getUsuario_us(), u.getSenha_us(), u.getNivelAcesso_us()});
+            modelo.addRow(new Object[]{u.getId_usuario(),u.getNome_us(), u.getUsuario_us(), u.getNivelAcesso_us()});
         }
     }
 }

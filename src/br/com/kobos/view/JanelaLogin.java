@@ -8,6 +8,7 @@ import br.com.kobos.controller.FuncionarioController;
 import br.com.kobos.controller.UsuarioController;
 import javax.swing.JOptionPane;
 
+
 /**
  *
  * @author guest01
@@ -43,7 +44,6 @@ public class JanelaLogin extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
-        setType(java.awt.Window.Type.UTILITY);
 
         jLabel1.setText("Usuário:");
         jLabel1.setBounds(110, 40, 60, 14);
@@ -53,13 +53,18 @@ public class JanelaLogin extends javax.swing.JFrame {
         jLabel2.setBounds(110, 90, 70, 14);
         jDesktopPane1.add(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/Actions-dialog-ok-apply-icon.png"))); // NOI18N
+        btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icones/okapplyicon.png"))); // NOI18N
         btEntrar.setToolTipText("Entrar");
         btEntrar.setContentAreaFilled(false);
         btEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btEntrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEntrarActionPerformed(evt);
+            }
+        });
+        btEntrar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btEntrarKeyPressed(evt);
             }
         });
         btEntrar.setBounds(270, 110, 50, 30);
@@ -91,6 +96,9 @@ public class JanelaLogin extends javax.swing.JFrame {
         validaUsuario();
     }//GEN-LAST:event_btEntrarActionPerformed
 
+    private void btEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btEntrarKeyPressed
+        ///////////////
+    }//GEN-LAST:event_btEntrarKeyPressed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btEntrar;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -100,22 +108,28 @@ public class JanelaLogin extends javax.swing.JFrame {
     private javax.swing.JTextField txSenha;
     private javax.swing.JTextField txUsuario;
     // End of variables declaration//GEN-END:variables
-    
+
     public void validaUsuario() {
         UsuarioController uc = new UsuarioController();
         JanelaPrincipal jp = new JanelaPrincipal();
-        
+
         String login = txUsuario.getText();
         String senha = txSenha.getText();
-        
-        boolean resposta = uc.ValidaUsuario(senha, senha);
-        
-        if(resposta == true){
-            jp.setVisible(true);
-            this.dispose();
-        } else if (txSenha.getText().equals("") || txUsuario.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!");
+        if (txSenha.getText().equals("") || txUsuario.getText().equals("")) {
+          // JOptionPane.showMessageDialog(null, "Todos os campos precisam ser preenchidos!");
+            System.out.println("Todos os campos precisam ser preenchidos.");
+            JOptionPane.showMessageDialog(null, "yyyy");
+        } else {
+
+
+            boolean resposta = uc.ValidaUsuario(login, senha);
+
+            if (resposta == true) {
+                jp.setVisible(true);
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos.");
+            }
         }
     }
 }
-

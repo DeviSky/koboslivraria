@@ -230,7 +230,6 @@ public class LojaInserirGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txEnderecoActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
-        txCodigo.setText("");
         txNome.setText("");
         txEndereco.setText("");
         txTelefone.setText("");

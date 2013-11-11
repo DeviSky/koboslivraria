@@ -17,6 +17,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
     private int linhaSelecionada;
+    int idUsuario;
     /**
      * Creates new form AutorInserirGUI
      */
@@ -24,6 +25,7 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
         this.modelo = modelo;
         initComponents();
     }
+
     
     public FuncionarioInserirGUI(DefaultTableModel modelo, int linhaSelecionada, int id_funcionario){
         this.modelo = modelo;
