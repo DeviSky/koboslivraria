@@ -12,12 +12,12 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class FuncionarioDAOImplements implements FuncionarioDAO{
-    private static final String INSERT = "insert into FORNECEDOR (nome_fn, telefone_fn, bairro_fn, rg_fn, cidade_fn, endereco_fn, cpf_fn, salario_fn, funcao_fn, ctps_fn, LOJA_id_loja, USUARIO_id_usuario) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-    private static final String REMOVE = "delete from FORNECEDOR where id_funcionario = ?;";
-    private static final String UPDATE = "update FORNECEDOR set nome_fn = ?, telefone_fn = ?, bairro_fn = ?, rg_fn = ?, cidade_fn = ?, endereco_fn = ?, cpf_fn = ?, salario_fn = ?, funcao_fn = ?, ctps_fn = ?, LOJA_id_loja = ?, USUARIO_id_usuario = ? where id_funcionario = ?";
-    private static final String LIST = "select * from FORNECEDOR;";
-    private static final String LISTBYID = "select * from FORNECEDOR where id_funcionario = ?";
-    private static final String LISTBYNOME = "select * from FORNECEDOR where nome_fn like ?";
+    private static final String INSERT = "insert into FUNCIONARIO (nome_fn, telefone_fn, bairro_fn, rg_fn, cidade_fn, endereco_fn, cpf_fn, salario_fn, funcao_fn, ctps_fn, LOJA_id_loja, USUARIO_id_usuario) values ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String REMOVE = "delete from FUNCIONARIO where id_funcionario = ?;";
+    private static final String UPDATE = "update FUNCIONARIO set nome_fn = ?, telefone_fn = ?, bairro_fn = ?, rg_fn = ?, cidade_fn = ?, endereco_fn = ?, cpf_fn = ?, salario_fn = ?, funcao_fn = ?, ctps_fn = ?, LOJA_id_loja = ?, USUARIO_id_usuario = ? where id_funcionario = ?";
+    private static final String LIST = "select * from FUNCIONARIO;";
+    private static final String LISTBYID = "select * from FUNCIONARIO where id_funcionario = ?";
+    private static final String LISTBYNOME = "select * from FUNCIONARIO where nome_fn like ?";
 
     @Override
     public int salvar(Funcionario f) {

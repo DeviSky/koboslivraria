@@ -446,14 +446,14 @@ public class FuncionarioInserirGUI extends javax.swing.JFrame {
             int id = fc.salvar(f);
             if(id > 0){
                 modelo.addRow(new Object[]{id, f.getNome(), f.getTelefone(), f.getBairro(), f.getCidade(), f.getRg(), f.getCpf(), f.getEndereco(), f.getSalario(), f.getCtps(), f.getFuncao(), f.getLOJA_id_loja(), f.getUSUARIO_id_usuario()});
-                JOptionPane.showMessageDialog(null,"Autor cadastrado com sucesso!");
+                JOptionPane.showMessageDialog(null,"Funcionário cadastrado com sucesso!");
             }
         }else{
             int id = fc.salvar(f);
             if(id > 0){
                 modelo.removeRow(linhaSelecionada);
                 modelo.addRow(new Object[]{id,  f.getNome(), f.getTelefone(), f.getBairro(), f.getCidade(), f.getRg(), f.getCpf(), f.getEndereco(), f.getSalario(), f.getCtps(), f.getFuncao(), f.getLOJA_id_loja(), f.getUSUARIO_id_usuario()});
-                JOptionPane.showMessageDialog(null, "Autor atualizado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Funcionário atualizado com sucesso!");
             }
         }
         dispose();

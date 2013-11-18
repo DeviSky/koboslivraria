@@ -10,7 +10,7 @@ public class FuncionarioController {
     
     public int salvar(Funcionario f){
         FuncionarioDAO dao = new FuncionarioDAOImplements();
-        return dao.salvar(null);
+        return dao.salvar(f);
     }
     
     public List<Funcionario> listAll(){
