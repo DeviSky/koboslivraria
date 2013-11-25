@@ -4,8 +4,8 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.UsuarioController;
-import br.com.kobos.modelo.Usuario;
+import br.com.kobos.controller.EditorController;
+import br.com.kobos.modelo.Editor;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pee
  */
-public class UsuarioSelecionarGUI extends javax.swing.JFrame {
+public class EditorListaGUI extends javax.swing.JFrame {
 
     private JTable tabela;
     private DefaultTableModel modelo = new DefaultTableModel();
     
-    public UsuarioSelecionarGUI() {
+    public EditorListaGUI() {
         initComponents();
         criaJTable();
         painelRolagem.setViewportView(tabela);
@@ -43,21 +43,15 @@ public class UsuarioSelecionarGUI extends javax.swing.JFrame {
         btDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listagem de usuários");
+        setTitle("Listagem de editores");
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de usuários", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de editores", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel1.setText("Nome:");
 
         txPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txPesquisarActionPerformed(evt);
-            }
-        });
-
-        painelRolagem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                painelRolagemMouseClicked(evt);
             }
         });
 
@@ -155,11 +149,11 @@ public class UsuarioSelecionarGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if (linhaSelecionada >= 0){
-            int id_usuario = (int)tabela.getValueAt(linhaSelecionada, 0);
+            int id_editor = (int)tabela.getValueAt(linhaSelecionada, 0);
             
-            UsuarioController uc = new UsuarioController();
+            EditorController ec = new EditorController();
             
-            if (uc.remover(id_usuario)){
+            if (ec.remover(id_editor)){
                 modelo.removeRow(linhaSelecionada);               
             }
         }else{
@@ -173,9 +167,9 @@ public class UsuarioSelecionarGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_usuario = (int)tabela.getValueAt(linhaSelecionada, 0);
-            UsuarioInserirGUI ui = new UsuarioInserirGUI(modelo, linhaSelecionada, id_usuario);
-            ui.setVisible(true);
+            int id_editor = (int)tabela.getValueAt(linhaSelecionada, 0);
+            EditorInserirGUI ei = new EditorInserirGUI(modelo, linhaSelecionada, id_editor);
+            ei.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
@@ -183,16 +177,12 @@ public class UsuarioSelecionarGUI extends javax.swing.JFrame {
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
         String nome = txPesquisar.getText();
-        UsuarioController uc = new UsuarioController();
+        EditorController ec = new EditorController();
         modelo.setNumRows(0);
-        for(Usuario u: uc.ListByNome(nome)){
-            modelo.addRow(new Object[]{u.getId_usuario(), u.getNome_us(), u.getUsuario_us(), u.getSenha_us(), u.getNivelAcesso_us()});
+        for(Editor e: ec.ListByNome(nome)){
+            modelo.addRow(new Object[]{e.getId_editor(), e.getNome(), e.getEmail(), e.getUrl(), e.getEndereco(), e.getCidade()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
-
-    private void painelRolagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelRolagemMouseClicked
-        //
-    }//GEN-LAST:event_painelRolagemMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
@@ -214,9 +204,9 @@ public class UsuarioSelecionarGUI extends javax.swing.JFrame {
     }
     
     private void preencherJTable(){
-        UsuarioController uc = new UsuarioController();
-        for(Usuario u: uc.listAll()){
-            modelo.addRow(new Object[]{u.getId_usuario(),u.getNome_us(), u.getUsuario_us(), u.getNivelAcesso_us()});
+        EditorController ec = new EditorController();
+        for(Editor e: ec.listAll()){
+            modelo.addRow(new Object[]{e.getId_editor(), e.getNome(), e.getEmail(), e.getUrl(), e.getEndereco(), e.getCidade()});
         }
     }
 }

@@ -62,6 +62,12 @@ public class TelaLoginGUI extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1);
         jButton1.setBounds(260, 140, 40, 30);
+
+        txSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txSenhaActionPerformed(evt);
+            }
+        });
         getContentPane().add(txSenha);
         txSenha.setBounds(110, 110, 200, 20);
 
@@ -75,6 +81,10 @@ public class TelaLoginGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         validaUsuario();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txSenhaActionPerformed
+        jButton1.doClick();
+    }//GEN-LAST:event_txSenhaActionPerformed
 
     /**
      * @param args the command line arguments

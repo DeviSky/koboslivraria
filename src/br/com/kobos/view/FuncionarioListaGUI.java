@@ -41,7 +41,6 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         btInserir = new javax.swing.JButton();
         btAtualizar = new javax.swing.JButton();
         btDeletar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listagem de funcionários");
@@ -89,13 +88,6 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout painelFundoLayout = new javax.swing.GroupLayout(painelFundo);
         painelFundo.setLayout(painelFundoLayout);
         painelFundoLayout.setHorizontalGroup(
@@ -110,8 +102,6 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
                     .addComponent(painelRolagem)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFundoLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,8 +122,7 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
                     .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(btInserir)
                         .addComponent(btAtualizar))
-                    .addComponent(btDeletar)
-                    .addComponent(jButton1))
+                    .addComponent(btDeletar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(painelRolagem, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
@@ -201,17 +190,6 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//         int linhaSelecionada = -1;
-//
-//        linhaSelecionada = tabela.getSelectedRow();
-//
-//        if(linhaSelecionada >= 0){
-//            FuncionarioInserirGUI.idUsuario = (int) tabela.getValueAt(linhaSelecionada, 0);
-//            dispose();
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void painelRolagemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelRolagemMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_painelRolagemMouseClicked
@@ -220,7 +198,6 @@ public class FuncionarioListaGUI extends javax.swing.JFrame {
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btDeletar;
     private javax.swing.JButton btInserir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel painelFundo;
     private javax.swing.JScrollPane painelRolagem;

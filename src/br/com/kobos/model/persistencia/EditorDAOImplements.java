@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 
 public class EditorDAOImplements implements EditorDAO{
     
-    private static final String INSERT = "Insert into EDITOR (nome_ed, email_ed, url_ed, endereco_ed, cidade_ed) values (?, ?, ?, ?, ?)";
-    private static final String REMOVE = "delete from EDITOR where id_editor = ?";
-    private static final String UPDATE = "update EDITOR set nome_ed = ?, email_ed = ?, url_ed = ?, endereco_ed = ?, cidade_ed = ? where id_editor = ?";
-    private static final String LIST = "select * EDITOR";
-    private static final String LISTBYID = "select * EDITOR where id_editor = ?";
-    private static final String LISTBYNOME = "select * from EDITOR where nome_ed like ?";
+    private static final String INSERT = "Insert into EDITORA (nome_ed, email_ed, url_ed, endereco_ed, cidade_ed) values (?, ?, ?, ?, ?)";
+    private static final String REMOVE = "delete from EDITORA where id_editora = ?";
+    private static final String UPDATE = "update EDITORA set nome_ed = ?, email_ed = ?, url_ed = ?, endereco_ed = ?, cidade_ed = ? where id_editora = ?";
+    private static final String LIST = "select * EDITORA";
+    private static final String LISTBYID = "select * EDITORA where id_editora = ?";
+    private static final String LISTBYNOME = "select * from EDITORA where nome_ed like ?";
 
     @Override
     public int salvar(Editor e) {
@@ -60,14 +60,14 @@ public class EditorDAOImplements implements EditorDAO{
     }
 
     @Override
-    public boolean remove(int id_editor) {
+    public boolean remove(int id_editora) {
         boolean status = false;
         Connection conn = null;
         PreparedStatement pstm = null;
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(REMOVE);
-            pstm.setInt(1, id_editor);
+            pstm.setInt(1, id_editora);
             pstm.execute();
             status = true;
         }catch(Exception e){
@@ -94,7 +94,7 @@ public class EditorDAOImplements implements EditorDAO{
             rs = pstm.executeQuery();
             while (rs.next()){
                 Editor ed = new Editor();
-                ed.setId_editor(rs.getInt("id_editor"));
+                ed.setId_editor(rs.getInt("id_editora"));
                 ed.setNome(rs.getString("nome_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
@@ -126,7 +126,7 @@ public class EditorDAOImplements implements EditorDAO{
             pstm.setInt(1, id_editor);
             rs = pstm.executeQuery();
             while (rs.next()){
-                ed.setId_editor(rs.getInt("id_editor"));
+                ed.setId_editor(rs.getInt("id_editora"));
                 ed.setNome(rs.getString("nome_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));
@@ -158,7 +158,7 @@ public class EditorDAOImplements implements EditorDAO{
             rs = pstm.executeQuery();
             while(rs.next()){
                 Editor ed = new Editor();
-                ed.setId_editor(rs.getInt("id_editor"));
+                ed.setId_editor(rs.getInt("id_editora"));
                 ed.setNome(rs.getString("nome_ed"));
                 ed.setEmail(rs.getString("email_ed"));
                 ed.setUrl(rs.getString("url_ed"));

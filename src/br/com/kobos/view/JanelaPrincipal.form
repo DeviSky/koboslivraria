@@ -18,6 +18,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Autor"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="miAutorActionPerformed"/>
+                  </Events>
                 </MenuItem>
                 <MenuItem class="javax.swing.JMenuItem" name="mCategoria">
                   <Properties>
@@ -144,6 +147,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCategoriaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btEditor">
           <Properties>
@@ -152,6 +158,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btEditorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btFornecedor">
           <Properties>
@@ -160,6 +169,9 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btFornecedorActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btFuncionario">
           <Properties>

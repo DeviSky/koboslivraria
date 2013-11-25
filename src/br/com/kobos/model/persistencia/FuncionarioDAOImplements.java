@@ -105,6 +105,7 @@ public class FuncionarioDAOImplements implements FuncionarioDAO{
                 f.setTelefone(rs.getString("telefone_fn"));
                 f.setBairro(rs.getString("bairro_fn"));
                 f.setRg(rs.getString("rg_fn"));
+                f.setFuncao(rs.getString("funcao_fn"));
                 f.setCidade(rs.getString("cidade_fn"));
                 f.setEndereco(rs.getString("endereco_fn"));
                 f.setCpf(rs.getString("cpf_fn"));

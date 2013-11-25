@@ -133,7 +133,7 @@ public class CategoriaDAOImplements implements CategoriaDAO{
     }
 
     @Override
-    public List<Categoria> ListByNome(String nome) {
+    public List<Categoria> ListByNome(String descricao) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -141,7 +141,7 @@ public class CategoriaDAOImplements implements CategoriaDAO{
         try{
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LISTBYNOME);
-            pstm.setString(1, "%" + nome + "%");
+            pstm.setString(1, "%" + descricao + "%");
             rs = pstm.executeQuery();
             while(rs.next()){
                 Categoria c = new Categoria();

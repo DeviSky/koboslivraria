@@ -4,8 +4,10 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.LojaController;
-import br.com.kobos.modelo.Loja;
+import br.com.kobos.controller.FornecedorController;
+import br.com.kobos.controller.UsuarioController;
+import br.com.kobos.modelo.Fornecedor;
+import br.com.kobos.modelo.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pee
  */
-public class LojaListaGUI extends javax.swing.JFrame {
+public class FornecedorListaGUI extends javax.swing.JFrame {
 
     private JTable tabela;
     private DefaultTableModel modelo = new DefaultTableModel();
     
-    public LojaListaGUI() {
+    public FornecedorListaGUI() {
         initComponents();
         criaJTable();
         painelRolagem.setViewportView(tabela);
@@ -43,9 +45,9 @@ public class LojaListaGUI extends javax.swing.JFrame {
         btDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listagem de lojas");
+        setTitle("Listagem de fornecedor");
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de lojas", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de fornecedor", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
 
         jLabel1.setText("Nome:");
 
@@ -137,9 +139,9 @@ public class LojaListaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-        LojaInserirGUI li = new LojaInserirGUI(modelo);
-        li.setLocationRelativeTo(null);
-        li.setVisible(true);
+        FornecedorInserirGUI fi = new FornecedorInserirGUI(modelo);
+        fi.setLocationRelativeTo(null);
+        fi.setVisible(true);
         
     }//GEN-LAST:event_btInserirActionPerformed
 
@@ -149,11 +151,11 @@ public class LojaListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if (linhaSelecionada >= 0){
-            int id_loja = (int)tabela.getValueAt(linhaSelecionada, 0);
+            int id_Fornecedor = (int)tabela.getValueAt(linhaSelecionada, 0);
             
-            LojaController lc = new LojaController();
+            FornecedorController fc = new FornecedorController();
             
-            if (lc.remover(id_loja)){
+            if (fc.remover(id_Fornecedor)){
                 modelo.removeRow(linhaSelecionada);               
             }
         }else{
@@ -167,9 +169,9 @@ public class LojaListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_loja = (int)tabela.getValueAt(linhaSelecionada, 0);
-            LojaInserirGUI li = new LojaInserirGUI(modelo, linhaSelecionada, id_loja);
-            li.setVisible(true);
+            int id_Fornecedor = (int)tabela.getValueAt(linhaSelecionada, 0);
+            FornecedorInserirGUI fi = new FornecedorInserirGUI(modelo, linhaSelecionada, id_Fornecedor);
+            fi.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
@@ -177,10 +179,10 @@ public class LojaListaGUI extends javax.swing.JFrame {
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
         String nome = txPesquisar.getText();
-        LojaController lc = new LojaController();
+        FornecedorController fc = new FornecedorController();
         modelo.setNumRows(0);
-        for(Loja l: lc.listByNome(nome)){
-            modelo.addRow(new Object[]{l.getId_loja(), l.getNome(), l.getEndereco(), l.getEndereco(), l.getCep()});
+        for(Fornecedor f: fc.ListByNome(nome)){
+            modelo.addRow(new Object[]{f.getId_fornecedor(), f.getNome(), f.getEndereco(), f.getTelefone()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
 
@@ -198,15 +200,15 @@ public class LojaListaGUI extends javax.swing.JFrame {
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
         modelo.addColumn("Nome");
+        modelo.addColumn("Endereco");
         modelo.addColumn("Telefone");
-        modelo.addColumn("Endereço");
         preencherJTable();
     }
     
     private void preencherJTable(){
-        LojaController lc = new LojaController();
-        for(Loja l: lc.ListAll()){
-            modelo.addRow(new Object[]{l.getId_loja(), l.getNome(), l.getTelefone(), l.getEndereco()});
+        FornecedorController fc = new FornecedorController();
+        for(Fornecedor f: fc.listAll()){
+            modelo.addRow(new Object[]{f.getId_fornecedor(), f.getEndereco(), f.getTelefone()});
         }
     }
 }

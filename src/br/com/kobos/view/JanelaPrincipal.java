@@ -72,18 +72,33 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         btCategoria.setFocusable(false);
         btCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btCategoria.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCategoriaActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btCategoria);
 
         btEditor.setText("Editor");
         btEditor.setFocusable(false);
         btEditor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btEditor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btEditor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEditorActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btEditor);
 
         btFornecedor.setText("Fornecedor");
         btFornecedor.setFocusable(false);
         btFornecedor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btFornecedor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btFornecedorActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btFornecedor);
 
         btFuncionario.setText("Funcionário");
@@ -147,6 +162,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         mCadastro.setText("Cadastro");
 
         miAutor.setText("Autor");
+        miAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAutorActionPerformed(evt);
+            }
+        });
         mCadastro.add(miAutor);
 
         mCategoria.setText("Categoria");
@@ -246,6 +266,28 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         ll.setLocationRelativeTo(null);
         ll.setVisible(true);
     }//GEN-LAST:event_btLojaActionPerformed
+
+    private void btCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCategoriaActionPerformed
+        CategoriaListaGUI cl = new CategoriaListaGUI();
+        cl.setLocationRelativeTo(null);
+        cl.setVisible(true);
+    }//GEN-LAST:event_btCategoriaActionPerformed
+
+    private void btFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFornecedorActionPerformed
+        FornecedorListaGUI fl = new FornecedorListaGUI();
+        fl.setLocationRelativeTo(null);
+        fl.setVisible(true);
+    }//GEN-LAST:event_btFornecedorActionPerformed
+
+    private void btEditorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditorActionPerformed
+        EditorListaGUI el = new EditorListaGUI();
+        el.setLocationRelativeTo(null);
+        el.setVisible(true);
+    }//GEN-LAST:event_btEditorActionPerformed
+
+    private void miAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAutorActionPerformed
+        btAutor.doClick();
+    }//GEN-LAST:event_miAutorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAutor;

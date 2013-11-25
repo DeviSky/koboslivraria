@@ -8,7 +8,7 @@ import java.util.List;
 
 public class CategoriaController {
     
-    public int inserir(Categoria c){
+    public int salvar(Categoria c){
         CategoriaDAO dao = new CategoriaDAOImplements();
         return dao.salvar(c);
     }

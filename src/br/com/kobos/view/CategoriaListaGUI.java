@@ -4,8 +4,8 @@
  */
 package br.com.kobos.view;
 
-import br.com.kobos.controller.LojaController;
-import br.com.kobos.modelo.Loja;
+import br.com.kobos.controller.CategoriaController;
+import br.com.kobos.modelo.Categoria;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Pee
  */
-public class LojaListaGUI extends javax.swing.JFrame {
+public class CategoriaListaGUI extends javax.swing.JFrame {
 
     private JTable tabela;
     private DefaultTableModel modelo = new DefaultTableModel();
     
-    public LojaListaGUI() {
+    public CategoriaListaGUI() {
         initComponents();
         criaJTable();
         painelRolagem.setViewportView(tabela);
@@ -43,11 +43,11 @@ public class LojaListaGUI extends javax.swing.JFrame {
         btDeletar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Listagem de lojas");
+        setTitle("Listagem de categoria");
 
-        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de lojas", 2, 0));
+        painelFundo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Pesquisa de categoria", 2, 0));
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Descrição:");
 
         txPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,10 +90,13 @@ public class LojaListaGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelFundoLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(txPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
-                    .addComponent(painelRolagem)
+                        .addGroup(painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(painelRolagem)
+                            .addGroup(painelFundoLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txPesquisar)))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelFundoLayout.createSequentialGroup()
                         .addGap(0, 310, Short.MAX_VALUE)
                         .addComponent(btInserir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,8 +104,7 @@ public class LojaListaGUI extends javax.swing.JFrame {
                         .addComponent(btAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btDeletar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
-                .addContainerGap())
+                        .addGap(18, 18, 18))))
         );
         painelFundoLayout.setVerticalGroup(
             painelFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,8 +119,8 @@ public class LojaListaGUI extends javax.swing.JFrame {
                         .addComponent(btInserir)
                         .addComponent(btAtualizar))
                     .addComponent(btDeletar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -137,9 +139,9 @@ public class LojaListaGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-        LojaInserirGUI li = new LojaInserirGUI(modelo);
-        li.setLocationRelativeTo(null);
-        li.setVisible(true);
+        CategoriaInserirGUI ci = new CategoriaInserirGUI(modelo);
+        ci.setLocationRelativeTo(null);
+        ci.setVisible(true);
         
     }//GEN-LAST:event_btInserirActionPerformed
 
@@ -149,11 +151,11 @@ public class LojaListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if (linhaSelecionada >= 0){
-            int id_loja = (int)tabela.getValueAt(linhaSelecionada, 0);
+            int id_tipo = (int)tabela.getValueAt(linhaSelecionada, 0);
             
-            LojaController lc = new LojaController();
+            CategoriaController cc = new CategoriaController();
             
-            if (lc.remover(id_loja)){
+            if (cc.remover(id_tipo)){
                 modelo.removeRow(linhaSelecionada);               
             }
         }else{
@@ -167,20 +169,20 @@ public class LojaListaGUI extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         
         if(linhaSelecionada >= 0){
-            int id_loja = (int)tabela.getValueAt(linhaSelecionada, 0);
-            LojaInserirGUI li = new LojaInserirGUI(modelo, linhaSelecionada, id_loja);
-            li.setVisible(true);
+            int id_tipo = (int) tabela.getValueAt(linhaSelecionada, 0);
+            CategoriaInserirGUI ci = new CategoriaInserirGUI(modelo, linhaSelecionada, id_tipo);
+            ci.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
     }//GEN-LAST:event_btAtualizarActionPerformed
 
     private void txPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txPesquisarActionPerformed
-        String nome = txPesquisar.getText();
-        LojaController lc = new LojaController();
+        String descricao = txPesquisar.getText();
+        CategoriaController cc = new CategoriaController();
         modelo.setNumRows(0);
-        for(Loja l: lc.listByNome(nome)){
-            modelo.addRow(new Object[]{l.getId_loja(), l.getNome(), l.getEndereco(), l.getEndereco(), l.getCep()});
+        for(Categoria c: cc.ListByNome(descricao)){
+            modelo.addRow(new Object[]{c.getId_tipo(), c.getDescricao()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
 
@@ -197,16 +199,14 @@ public class LojaListaGUI extends javax.swing.JFrame {
     private void criaJTable(){
         tabela = new JTable(modelo);
         modelo.addColumn("Código");
-        modelo.addColumn("Nome");
-        modelo.addColumn("Telefone");
-        modelo.addColumn("Endereço");
+        modelo.addColumn("Descrição");
         preencherJTable();
     }
     
     private void preencherJTable(){
-        LojaController lc = new LojaController();
-        for(Loja l: lc.ListAll()){
-            modelo.addRow(new Object[]{l.getId_loja(), l.getNome(), l.getTelefone(), l.getEndereco()});
+        CategoriaController cc = new CategoriaController();
+        for(Categoria c: cc.listAll()){
+            modelo.addRow(new Object[]{c.getId_tipo(),c.getDescricao()});
         }
     }
 }
